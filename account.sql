@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2018 年 5 朁E07 日 06:01
+-- Generation Time: 2018 年 5 朁E07 日 08:06
 -- サーバのバージョン： 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -33,7 +33,7 @@ CREATE TABLE `account` (
   `MAil` varchar(50) NOT NULL,
   `PASS` varchar(20) NOT NULL,
   `QRPASS` varchar(5) NOT NULL,
-  `PHONE` tinyint(15) NOT NULL,
+  `PHONE` int(15) NOT NULL,
   `NAME` varchar(20) NOT NULL,
   `PREMIER` tinyint(1) NOT NULL,
   `RECORD_ID` tinyint(30) NOT NULL,
