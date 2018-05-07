@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2018 年 5 朁E07 日 05:46
+-- Generation Time: 2018 年 5 朁E07 日 06:01
 -- サーバのバージョン： 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -44,7 +44,7 @@ CREATE TABLE `account` (
   `PARTNER_ID` tinyint(30) NOT NULL,
   `ITEM_ID` tinyint(30) NOT NULL,
   `ITEM_NAME` varchar(20) NOT NULL,
-  `CONTENT` varchar(50) NOT NULL,
+  `CONTENT` varchar(130) NOT NULL,
   `REAL_NAME` varchar(20) NOT NULL,
   `GROUP` varchar(15) DEFAULT NULL,
   `SUBJECT` varchar(20) DEFAULT NULL,
