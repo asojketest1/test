@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2018 年 5 朁E07 日 08:01
+-- Generation Time: 2018 年 5 朁E07 日 08:13
 -- サーバのバージョン： 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -25,23 +25,21 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- テーブルの構造 `item table`
+-- テーブルの構造 `fruit`
 --
 
-CREATE TABLE `item table` (
-  `ITEM_ID` tinyint(30) NOT NULL,
-  `ITEM_NAME` varchar(20) NOT NULL,
-  `CONTENT` varchar(130) NOT NULL,
-  `DISPLAY` tinyint(1) NOT NULL
+CREATE TABLE `fruit` (
+  `ID` tinyint(10) NOT NULL,
+  `ITEM_ID` tinyint(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- テーブルのデータのダンプ `item table`
+-- テーブルのデータのダンプ `fruit`
 --
 
-INSERT INTO `item table` (`ITEM_ID`, `ITEM_NAME`, `CONTENT`, `DISPLAY`) VALUES
-(0, '', '', 0),
-(0, '', '', 1);
+INSERT INTO `fruit` (`ID`, `ITEM_ID`) VALUES
+(1, 0),
+(2, 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
