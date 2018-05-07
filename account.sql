@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2018 年 5 朁E07 日 05:23
+-- Generation Time: 2018 年 5 朁E07 日 05:46
 -- サーバのバージョン： 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -61,8 +61,8 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`ID`, `MAil`, `PASS`, `QRPASS`, `PHONE`, `NAME`, `PREMIER`, `RECORD_ID`, `SKIN_ID`, `FRUIT_ID`, `QR_URL`, `ICON_URL`, `PARTNER_ID`, `ITEM_ID`, `ITEM_NAME`, `CONTENT`, `REAL_NAME`, `GROUP`, `SUBJECT`, `S_or_T`, `P_or_P`, `I_or_M`, `W_or_O`, `I_or_C`, `DISPLAY`) VALUES
-(1, 'sample@sample.com', 'abc1', 'aaaaa', 127, '無料', 0, 2, 0, 0, '', '', 2, 0, '', '', '', 'A社', 'プログラム', 1, 1, 1, 0, 0, 0),
-(2, 'sample2@sample.com', 'abc2', 'bbbbb', 127, '有料', 1, 1, 0, 0, '', '', 1, 0, '', '', '', 'B社', 'DB', 0, 1, 0, 1, 1, 1);
+(1, 'sample@sample.com', 'abc1', 'aaaaa', 127, '無料', 0, 2, 0, 0, '', '', 2, 0, '', '', 'テスト１', 'A社', 'プログラム', 1, 1, 1, 0, 0, 0),
+(2, 'sample2@sample.com', 'abc2', 'bbbbb', 127, '有料', 1, 1, 0, 0, '', '', 1, 0, '', '', 'テスト２', 'B社', 'DB', 0, 1, 0, 1, 1, 1);
 
 --
 -- Indexes for dumped tables
