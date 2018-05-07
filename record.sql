@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2018 年 5 朁E07 日 08:14
+-- Generation Time: 2018 年 5 朁E07 日 08:49
 -- サーバのバージョン： 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -50,7 +50,7 @@ INSERT INTO `record` (`ID`, `RECORD_ID`, `ITEM_ID`) VALUES
 -- Indexes for table `record`
 --
 ALTER TABLE `record`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`,`RECORD_ID`,`ITEM_ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

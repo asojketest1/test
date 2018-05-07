@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2018 年 5 朁E07 日 08:13
+-- Generation Time: 2018 年 5 朁E07 日 08:49
 -- サーバのバージョン： 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -40,6 +40,16 @@ CREATE TABLE `fruit` (
 INSERT INTO `fruit` (`ID`, `ITEM_ID`) VALUES
 (1, 0),
 (2, 0);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `fruit`
+--
+ALTER TABLE `fruit`
+  ADD PRIMARY KEY (`ID`,`ITEM_ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
