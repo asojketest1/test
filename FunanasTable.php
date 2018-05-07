@@ -6,7 +6,7 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
-class ShoplistsTable extends Table{
+class FunanasTable extends Table{
 
     public function initialize(array $config){
         $this->belongsTo('Testusers');
