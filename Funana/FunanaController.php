@@ -15,7 +15,7 @@ class FunanaController extends AppController{
 
     public function index(){
         $session = $this->request->session();
-        $data = $this->account->find('all');
+        $data = $this->account->find();
         $this->set('data',$data);
         $this->set('entity',$this->account->newEntity());
         if($this->request->is('post')){
