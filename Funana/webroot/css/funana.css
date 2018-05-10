@@ -1,0 +1,74 @@
+﻿body {	
+}
+form{
+}
+#divLoginBtn {
+	text-align: right;
+}
+button.loginBtn {
+	border-radius: 30px;
+	font-size: 1.4em;
+	font-weight: bold;
+	padding: 10px 30px;
+	background-color: #C0C0C0;
+	color: #fff;
+	border-style: none;
+	font-family: メイリオ;
+	text-align: center;
+	vertical-align: middle;
+	width: 180px;
+	height: 60px;
+}
+.fruitImg-base {
+    background-color: black;    
+    display: inline-block;
+    margin-top: 10px;
+}
+.fruitImg {
+	width: 100%;
+	height: 40%;
+	overflow: hidden;
+	text-align: center;
+	margin-top: 10px;
+	opacity: 0.7; 
+    display: block;
+}
+.indexImg {
+	color: #FFFFFF;
+	font-family: メイリオ;
+	vertical-align: middle;
+}
+#indexMsg {
+	line-height: 1.2;
+	vertical-align: middle;
+}
+#indexTtl {
+	margin: 3% 0px 3% 0px;
+	font-size: 600%;
+	line-height: 100%;
+}
+#indexStc {
+	margin: 0px;
+	font-size: 300%;
+}
+#divRegisterBtn {
+	text-align: center;
+}
+button.registerBtn {
+	border-radius: 30px;
+	font-size: 1.4em;
+	font-weight: bold;
+	padding: 10px 30px;
+	background-color: #FF3300;
+	color: #fff;
+	border-style: none;
+	font-family: メイリオ;
+	text-align: center;
+	vertical-align: middle;
+	width: 360px;
+	height: 60px;
+}
+#loginLink {
+	font-size: 1em;
+	text-align: center;
+}
