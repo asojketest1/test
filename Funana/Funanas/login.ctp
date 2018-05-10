@@ -1,8 +1,10 @@
-<h1>ログイン</h1>
-<?=$this->Form->create($entity,['url'=>['action'=>'login']])?>
-<fieldset>
-    <?=$this->Form->input('name',['type'=>'text'])?>
-    <?=$this->Form->input('pass',['type'=>'text'])?>
-</fieldset>
-<?=$this->Form->button("送信")?>
-<?=$this->Form->end()?>
+<?=$this->Form->create(null, ['type'=>'post','url'=>['action'=>'profileList']]) ?>
+    ログインID
+    <?=$this->Form->text("userid", ['placeholder'=>'メールアドレスまたはログインID', 'size'=>50]) ?><br />
+    パスワード
+    <?=$this->Form->text("password", ['placeholder'=>'パスワード', 'size'=>50]) ?>
+    <div id="divSignInBtn">
+        <?=$this->Form->button('Sign In', ['type'=>'submit', 'div'=>'false',
+                                                            'class'=>'signInBtn']) ?>
+    </div>
+<?=$this->Form->end(); ?>
