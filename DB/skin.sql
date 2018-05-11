@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2018 年 5 朁E10 日 08:20
+-- Generation Time: 2018 年 5 朁E11 日 04:06
 -- サーバのバージョン： 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -45,8 +45,8 @@ CREATE TABLE `skin` (
 --
 
 INSERT INTO `skin` (`ID`, `REAL_NAME`, `TEAM`, `SUBJECT`, `S_or_T`, `P_or_P`, `I_or_M`, `W_or_O`, `I_or_C`) VALUES
-(1, 'テスト1', 'A社', 'プログラム', 1, 1, 1, 0, 0),
-(2, 'テスト2', 'B社', 'DB', 0, 1, 0, 1, 1);
+(1, 'テスト1', 'A社', 'プログラム', 1, 4, 1, 0, 4),
+(2, 'テスト2', 'B社', 'DB', 0, 2, 0, 3, 1);
 
 --
 -- Indexes for dumped tables
