@@ -1,6 +1,10 @@
 <div class="registImg" style="position:relative;">
     <div class="ardFruitImg-base"><?=$this->Html->image('hAroundFruit.png', ['class'=>'ardFruitImg']) ?></div> 
-    <div style="position:absolute; top:30%; left:22%; bottom:30%; right:22%; margin:auto;">
+    <div style="position:absolute; top: 50%; left: 50%;
+                                    -ms-transform: translate(-50%,-50%);
+                                    -webkit-transform: translate(-50%,-50%);
+                                    transform: translate(-50%,-50%);
+                                    margin:0; padding:0;">
         <div id="necTxt">必要事項を入力してください</div>
         <div id="registTxt">
             <?=$this->Form->create(null, ['type'=>'post','url'=>['action'=>'profileList']]) ?>

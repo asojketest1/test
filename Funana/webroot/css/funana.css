@@ -74,7 +74,67 @@ button.registerBtn {
 	font-size: 1em;
 	text-align: center;
 }
-
+/*会員登録画面*/
+.ardFruitImg {
+	width: 100%;
+	overflow: hidden;
+	text-align: center;
+	margin-top: 20%;
+	margin-bottom: 20%;
+    display: block;
+}
+#necTxt {
+	text-align: center;
+	font-size: 150%;
+}
+#registTxt{
+	text-align: center;
+}
+#nameTxt {
+	font-size: 150%;
+	text-align: left;
+	margin-bottom: 0px;
+}
+#mailTxt {
+	font-size: 150%;
+	text-align: left;
+	margin-bottom: 0px;
+}
+#phoneTxt {
+	font-size: 150%;
+	text-align: left;
+	margin-bottom: 0px;
+}
+input.nameTxtbox{
+	font-size: 20px;
+	margin-top: 0px;
+}
+input.mailTxtbox{
+	font-size: 20px;
+	margin-top: 0px;
+}
+input.phoneTxtbox{
+	font-size: 20px;
+	margin-top: 0px;
+}
+#divSignUpBtn {
+	text-align: center;
+}
+button.signUpBtn {
+	border-radius: 30px;
+	font-size: 1.4em;
+	font-weight: bold;
+	padding: 10px 30px;
+	background-color: #FF3300;
+	color: #fff;
+	border-style: none;
+	font-family: メイリオ;
+	text-align: center;
+	vertical-align: middle;
+	width: 270px;
+	height: 60px;
+	margin-top: 5%;
+}
 /*ログイン画面*/
 .ardFruitImg {
 	width: 100%;
@@ -126,10 +186,4 @@ button.signInBtn {
 	width: 180px;
 	height: 60px;
 	margin-top: 5%;
-}
-
-#loginTxt {
-	text-align: center;
-	float: none;
-	position: relative;
 }
