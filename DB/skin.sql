@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2018 年 5 朁E07 日 08:15
+-- Generation Time: 2018 年 5 朁E10 日 08:20
 -- サーバのバージョン： 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `skin` (
   `ID` tinyint(10) NOT NULL,
   `REAL_NAME` varchar(20) NOT NULL,
-  `GROUP` varchar(15) DEFAULT NULL,
+  `TEAM` varchar(15) DEFAULT NULL,
   `SUBJECT` varchar(20) DEFAULT NULL,
   `S_or_T` tinyint(1) NOT NULL,
   `P_or_P` tinyint(1) NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE `skin` (
 -- テーブルのデータのダンプ `skin`
 --
 
-INSERT INTO `skin` (`ID`, `REAL_NAME`, `GROUP`, `SUBJECT`, `S_or_T`, `P_or_P`, `I_or_M`, `W_or_O`, `I_or_C`) VALUES
+INSERT INTO `skin` (`ID`, `REAL_NAME`, `TEAM`, `SUBJECT`, `S_or_T`, `P_or_P`, `I_or_M`, `W_or_O`, `I_or_C`) VALUES
 (1, 'テスト1', 'A社', 'プログラム', 1, 1, 1, 0, 0),
 (2, 'テスト2', 'B社', 'DB', 0, 1, 0, 1, 1);
 
