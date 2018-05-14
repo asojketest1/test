@@ -24,7 +24,7 @@
     </div>
 </div>
 <div id="divRegisterBtn">
-    <?=$this->Form->create(null, ['type'=>'post','url'=>['action'=>'register']]) ?>
+    <?=$this->Form->create(null, ['type'=>'post','url'=>['action'=>'regist']]) ?>
         <?=$this->Form->button('アカウントを作成　　 ＞', ['type'=>'submit', 'div'=>'false',
                                                         'class'=>'registerBtn']) ?>
     <?=$this->Form->end(); ?>

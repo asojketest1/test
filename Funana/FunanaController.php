@@ -10,6 +10,7 @@ class FunanaController extends AppController{
         $this->funanas = TableRegistry::get('funanas');
         $this->account = TableRegistry::get('account');
         $this->fruit = TableRegistry::get('fruit');
+        $this->item = TableRegistry::get('item');
         $this->skin = TableRegistry::get('skin');
         $this->record = TableRegistry::get('record');
     }
@@ -28,29 +29,50 @@ class FunanaController extends AppController{
         $this->set('entity',$this->account->newEntity());
     }
     
-    public function registConfirmation(){
+    public function registConfirmation($length = 5){
         if($this->request->is('post')){
             $name = $_POST['NAME'];
-            $mail = $_POST['MAiL'];
+            $mail = $_POST['MAIL'];
             $pass = $_POST['PASS'];
             $phone = $_POST['PHONE'];
             $this->set('entity',$this->account->newEntity());
             $board = $this->account->newEntity($this->request->data);
+            $pass2 = str_repeat('*', strlen($pass));
+            $qrpass = substr(str_shuffle(str_repeat('0123456789abcdefghijklmnopqrstuvwxyz', $length)), 0, $length);
             $this->set('data',$board);
+            $this->set('name',$name);
+            $this->set('mail',$mail);
+            $this->set('pass',$pass);
+            $this->set('pass2',$pass2);
+            $this->set('qrpass',$qrpass);
+            $this->set('phone',$phone);
         }
     }
 
     //実際にユーザーを作成してる画面
     public function addRecord(){
+        $session = $this->request->session();
         if($this->request->is('post')){
-            $session = $this->request->session();
-            $board = $this->account->newEntity($this->request->data);
-            if($this->account->save($board)){
-                $account = $this->account->find('all')->where(['NAME'=>$_POST['NAME']])
-                $session->write('id',$account->ID);
-                $this->redirect(['action'=>'friendList']);
+            $account_data = $this->account->newEntity($this->request->data);
+            if($this->account->save($account_data)){
+                $account = $this->account->find('all')->where(['NAME'=>$_POST['NAME']]);
+                foreach($account as $obj){
+                    $session->write('id',$obj->ID);
+                }
+                $new = $this->fruit->newEntity();
+                $new->ID = $session->read('id');
+                $new->ITEM_ID = 1;
+                $new->ITEM_NAME = "趣味";
+                $new->CONTENT = "音楽鑑賞";
+                $this->fruit->save($new);//実テーブルを仮作成
+                
+                $new_skin = $this->fruit->newEntity();
+                $new_skin->ID = $session->read('id');
+                if($this->skin->save($new_skin)){//皮テーブル作成
+                    $this->redirect(['action'=>'']);
+                }
             }
-            $this->set('entity',$board);
+            $this->set('entity',$account_data);
         }
     }
     
