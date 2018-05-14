@@ -2,7 +2,7 @@
 <?=$this->Form->create($entity,['url'=>['action'=>'']])?>
 
     <div class="username">
-            ユーザー名<?=$this->Form->text('username',['type'=>'text']) ?>
+                ユーザー名<?=$this->Form->text('username',['type'=>'text']) ?>
     </div>
 
     <div class="password">
