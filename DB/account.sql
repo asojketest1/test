@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: 2018 年 5 朁E09 日 04:56
--- サーバのバージョン： 10.1.26-MariaDB
--- PHP Version: 7.1.8
+-- Host: localhost
+-- Generation Time: 2018 年 5 月 14 日 07:10
+-- サーバのバージョン： 10.1.28-MariaDB
+-- PHP Version: 7.0.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db`
+-- Database: `mydata`
 --
 
 -- --------------------------------------------------------
@@ -36,8 +36,6 @@ CREATE TABLE `account` (
   `PHONE` varchar(13) NOT NULL,
   `NAME` varchar(20) NOT NULL,
   `PREMIER` tinyint(1) NOT NULL,
-  `SKIN_ID` tinyint(10) NOT NULL,
-  `FRUIT_ID` tinyint(10) NOT NULL,
   `QR_URL` varchar(60) NOT NULL,
   `ICON_URL` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -46,9 +44,10 @@ CREATE TABLE `account` (
 -- テーブルのデータのダンプ `account`
 --
 
-INSERT INTO `account` (`ID`, `MAIL`, `PASS`, `QRPASS`, `PHONE`, `NAME`, `PREMIER`, `SKIN_ID`, `FRUIT_ID`, `QR_URL`, `ICON_URL`) VALUES
-(1, 'sample@sample.com', 'abc1', 'aaaaa', '090-1111-2222', '無料', 0, 0, 0, '0', '0'),
-(2, 'sample2@sample.com', 'abc2', 'bbbbb', '090-2222-1111', '有料', 1, 0, 0, '0', '0');
+INSERT INTO `account` (`ID`, `MAIL`, `PASS`, `QRPASS`, `PHONE`, `NAME`, `PREMIER`, `QR_URL`, `ICON_URL`) VALUES
+(1, 'sample@sample.com', 'abc1', 'aaaaa', '090-1111-2222', '無料', 0, '0', '0'),
+(2, 'sample2@sample.com', 'abc2', 'bbbbb', '090-2222-1111', '有料', 1, '0', '0'),
+(12, 'test@gmail.com', 'test', '6dq39', '09089894343', 'テスト', 0, '', '');
 
 --
 -- Indexes for dumped tables
@@ -59,6 +58,16 @@ INSERT INTO `account` (`ID`, `MAIL`, `PASS`, `QRPASS`, `PHONE`, `NAME`, `PREMIER
 --
 ALTER TABLE `account`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `account`
+--
+ALTER TABLE `account`
+  MODIFY `ID` tinyint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
