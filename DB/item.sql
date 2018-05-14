@@ -25,32 +25,33 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- テーブルの構造 `record`
+-- テーブルの構造 `item`
 --
 
-CREATE TABLE `record` (
+CREATE TABLE `item` (
   `ID` tinyint(10) NOT NULL,
-  `RECORD_ID` tinyint(30) NOT NULL,
-  `ITEM_ID` tinyint(30) NOT NULL
+  `ITEM_NAME` varchar(20) NOT NULL,
+  `CONTENT` varchar(130) NOT NULL,
+  `DISPLAY` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- テーブルのデータのダンプ `record`
+-- テーブルのデータのダンプ `item`
 --
 
-INSERT INTO `record` (`ID`, `RECORD_ID`, `ITEM_ID`) VALUES
-(1, 2, 0),
-(2, 1, 0);
+INSERT INTO `item` (`ID`, `ITEM_NAME`, `CONTENT`, `DISPLAY`) VALUES
+(1, '趣味', '音楽', 0),
+(2, '趣味', 'ゲーム', 1);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `record`
+-- Indexes for table `item`
 --
-ALTER TABLE `record`
-  ADD PRIMARY KEY (`ID`,`RECORD_ID`,`ITEM_ID`);
+ALTER TABLE `item`
+  ADD PRIMARY KEY (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
