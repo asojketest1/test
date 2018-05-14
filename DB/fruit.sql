@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: 2018 年 5 朁E14 日 03:51
--- サーバのバージョン： 10.1.26-MariaDB
--- PHP Version: 7.1.8
+-- Host: localhost
+-- Generation Time: 2018 年 5 月 14 日 05:42
+-- サーバのバージョン： 10.1.28-MariaDB
+-- PHP Version: 7.0.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db`
+-- Database: `mydata`
 --
 
 -- --------------------------------------------------------
@@ -30,16 +30,20 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `fruit` (
   `ID` tinyint(10) NOT NULL,
-  `ITEM_ID` tinyint(30) NOT NULL
+  `ITEM_ID` tinyint(30) NOT NULL,
+  `ITEM_NAME` varchar(50) NOT NULL,
+  `CONTENT` varchar(100) NOT NULL,
+  `DISPLAY` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `fruit`
 --
 
-INSERT INTO `fruit` (`ID`, `ITEM_ID`) VALUES
-(1, 0),
-(2, 0);
+INSERT INTO `fruit` (`ID`, `ITEM_ID`, `ITEM_NAME`, `CONTENT`, `DISPLAY`) VALUES
+(1, 1, '趣味', '音楽鑑賞', 1),
+(1, 2, '好きなアーティスト', 'とぅわいす', 0),
+(2, 2, '好きなアーティスト', 'らっどうぃんぷす', 0);
 
 --
 -- Indexes for dumped tables
@@ -49,7 +53,7 @@ INSERT INTO `fruit` (`ID`, `ITEM_ID`) VALUES
 -- Indexes for table `fruit`
 --
 ALTER TABLE `fruit`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`,`ITEM_ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
