@@ -1,22 +1,30 @@
+<!DOCTYPE html>
+<html lang = "ja">
 
 <head>
-    <?= $this->Html->charset() ?>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <?= $this->fetch('title') ?>
-    </title>
+	<?= $this->Html->charset(); ?>
+<title>
+	<?= $this->fetch('title')?>
+</title>
+<?php
+echo $this->Html->css('funana');
+echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js");
+echo $this->Html->script('funana');
+echo $this->fetch('meta');
+echo $this->fetch('css');
+echo $this->fetch('script');
+?>
 </head>
 
 <body>
     <div id="container">
         <div id="header">
-            <h1>Funanaのレイアウト</h1>
+            <?=$this->element('Funana\header') ?>
         </div>
         <div id="content">
             <?= $this->fetch('content')?>
         </div>
-        <div id="footer">
-            footer
-        </div>
     </div>
 </body>
+
+</html>
