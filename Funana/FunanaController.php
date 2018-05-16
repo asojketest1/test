@@ -69,11 +69,33 @@ class FunanaController extends AppController{
                 $new_skin = $this->fruit->newEntity();
                 $new_skin->ID = $session->read('id');
                 if($this->skin->save($new_skin)){//皮テーブル作成
-                    $this->redirect(['action'=>'']);
+                    $this->redirect(['action'=>'skinEdit']);
                 }
             }
             $this->set('entity',$account_data);
         }
+    }
+    
+    //ログイン画面
+    public function login(){
+        $session = $this->request->session();
+        $this->set('entity',$this->account->newEntity());
+        if($this->request->is('post')){
+            if(isset($_POST['NAME'])){
+                $data = $this->account->find('all')->where(['NAME' => $_POST['NAME']]);
+                foreach($data as $obj){
+                    if(strcmp($obj->PASS, $_POST['PASS']) == 0){
+                        return $this->redirect(['action'=>'friendList']);
+                    }
+                }
+            }
+        }
+    }
+    
+    //ログアウト
+    public function logout(){
+        unset($session);
+        return $this->redirect(['action'=>'index']);
     }
     
     //友達一覧
