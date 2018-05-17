@@ -18,7 +18,7 @@ echo $this->fetch('script');
 
 <body>
     <div id="container">
-        <div id="header">
+        <div id="header" style="display:none;">
             <?=$this->element('Funana\header') ?>
         </div>
         <div id="content">
