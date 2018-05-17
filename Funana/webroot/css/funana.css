@@ -321,3 +321,28 @@ button.updateBtn {
 	margin-bottom: 0px;
 	margin-left: 20%;
 }
+/*変更完了画面*/
+#confTxt {
+	font-size: 250%;
+	text-align: center;
+	margin-top: 20%;
+	margin-bottom: 10%;
+}
+#homeBtn {
+	text-align: center;
+}
+button.homeBtn {
+	border-radius: 30px;
+	font-size: 1.4em;
+	font-weight: bold;
+	padding: 10px 30px;
+	background-color: #FF3300;
+	color: #fff;
+	border-style: none;
+	font-family: メイリオ;
+	text-align: center;
+	vertical-align: middle;
+	width: 250px;
+	height: 60px;
+	margin-top: 5%;
+}
