@@ -321,6 +321,21 @@ button.updateBtn {
 	margin-bottom: 0px;
 	margin-left: 20%;
 }
+/*認証コード入力画面*/
+#auth {
+	text-align: center;
+}
+#codeInputTxt {
+	font-size: 150%;
+	text-align: left;
+	margin-top: 20%;
+	margin-left: 20%;
+	margin-bottom: 0px;
+}
+#authBtn {
+	text-align: center;
+	margin-bottom: 20%;
+}
 /*変更完了画面*/
 #confTxt {
 	font-size: 250%;
