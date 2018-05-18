@@ -1,4 +1,4 @@
-<div class="loginImg" style="position:relative;">
+<div class="loginImg" style="position:relative;">a
     <div class="ardFruitImg-base"><?=$this->Html->image('wAroundFruit.png', ['class'=>'ardFruitImg']) ?></div> 
     <div style="position:absolute; top:30%; left:22%; bottom:30%; right:22%; margin:auto;">
         <div id="loginTxt">
