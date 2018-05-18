@@ -1,6 +1,5 @@
-﻿body {	
-}
-form{
+﻿body {
+	font-family: メイリオ;	
 }
 * {
 margin: 0px;
@@ -37,7 +36,6 @@ ul li {
 .menuBtn {
 	margin: 3%;
 	color: #fff;
-	font-family: メイリオ;
 	font-size: 1.7em;
 	font-weight: bold;
 	vertical-align: middle;
@@ -66,7 +64,6 @@ button.loginBtn {
 	background-color: #C0C0C0;
 	color: #fff;
 	border-style: none;
-	font-family: メイリオ;
 	text-align: center;
 	vertical-align: middle;
 	width: 180px;
@@ -88,7 +85,6 @@ button.loginBtn {
 }
 .indexImg {
 	color: #FFFFFF;
-	font-family: メイリオ;
 	vertical-align: middle;
 }
 #indexMsg {
@@ -115,7 +111,6 @@ button.registerBtn {
 	background-color: #FF3300;
 	color: #fff;
 	border-style: none;
-	font-family: メイリオ;
 	text-align: center;
 	vertical-align: middle;
 	width: 360px;
@@ -179,7 +174,6 @@ button.signUpBtn {
 	background-color: #FF3300;
 	color: #fff;
 	border-style: none;
-	font-family: メイリオ;
 	text-align: center;
 	vertical-align: middle;
 	width: 270px;
@@ -230,12 +224,71 @@ button.signInBtn {
 	background-color: #FF3300;
 	color: #fff;
 	border-style: none;
-	font-family: メイリオ;
 	text-align: center;
 	vertical-align: middle;
 	width: 180px;
 	height: 60px;
 	margin-top: 5%;
+}
+/*友達一覧画面*/
+input.searchTxtbox{
+	font-size: 22px;
+	margin: 3%;
+}
+.searchBtn {
+	border-radius: 30px;
+	background-color: #FF3300;
+	text-align: center;
+	vertical-align: middle;
+	padding: 1em;
+	width: 30px;
+	height: 30px;
+}
+#myInformation {
+	text-align: left;
+	padding: 2em;
+}
+#myName {
+	font-size: 250%;
+}
+#myMail {
+	font-size: 150%;
+	vertical-align: middle;
+}
+.myIcon {
+	border-radius: 50%;
+	width: 200px;
+	padding-left: 1em;
+}
+.mailIcon {
+	position: relative;
+	top: 10px;
+	width: 50px;
+}
+#friendCnt {
+	font-size: 100%;
+	margin-left: 1%;
+}
+#friendList {
+	margin: 2%;
+}
+.friendIcon {
+	border-radius: 50%;
+	width: 150px;
+	height: 150px;
+}
+#friendName {
+	font-size: 180%;
+	vertical-align: middle;
+	padding-left: 2em; 
+}
+#tradeFruit {
+	position: fixed;
+	right: 3%;
+	bottom: 3%;
+}
+.tradeBtn {
+	width: 230px;
 }
 /*パスワード変更画面*/
 #uppass{
@@ -276,7 +329,6 @@ button.updateBtn {
 	background-color: #FF3300;
 	color: #fff;
 	border-style: none;
-	font-family: メイリオ;
 	text-align: center;
 	vertical-align: middle;
 	width: 180px;
@@ -354,7 +406,6 @@ button.homeBtn {
 	background-color: #FF3300;
 	color: #fff;
 	border-style: none;
-	font-family: メイリオ;
 	text-align: center;
 	vertical-align: middle;
 	width: 250px;
