@@ -7,6 +7,7 @@ use Cake\ORM\TableRegistry;
 class FunanaController extends AppController{
 
     public function initialize(){
+        $this->viewBuilder()->Layout('funana');
         $this->funanas = TableRegistry::get('funanas');
         $this->account = TableRegistry::get('account');
         $this->fruit = TableRegistry::get('fruit');
@@ -23,7 +24,7 @@ class FunanaController extends AppController{
     }
 
     //ユーザー作成画面
-    public function regist(){
+    public function register(){
         $data = $this->account->find('all');
         $this->set('data',$data);
         $this->set('entity',$this->account->newEntity());
@@ -154,4 +155,13 @@ class FunanaController extends AppController{
                 $this->redirect(['action' => 'update_password']);
             }
         }
+    }
+    
+    public function qrReader(){
+        $session = $this->request->session();
+    }
+    
+    public function readAfter(){
+        $this->set('content',$this->request->data['content']);
+    }
 }
