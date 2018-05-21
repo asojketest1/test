@@ -1,3 +1,9 @@
+<script>
+    window.onload=function(){
+        var hd=document.getElementById('header'); 
+        hd.style.display='block'; 
+    }
+</script>
 <div id = "account_information">
     <table class="account_table">
         <?php foreach($data as $obj): ?>
@@ -23,7 +29,7 @@
             </tr>
             <tr>
                 <?=$this->Form->create($entity) ?>
-                <td class="backBtn"><?= $this->Form->button('メインメニューに戻る',['onclick' => 'history.back()', 'type' => 'button']) ?></td>
+                <td class="backBtn"><?= $this->Form->button('前の画面に戻る',['onclick' => 'history.back()', 'type' => 'button']) ?></td>
                 <?=$this->Form->end() ?>
             </tr>
         <?php endforeach; ?>
