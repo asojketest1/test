@@ -264,50 +264,6 @@ class FunanaController extends AppController{
             }
         }
     }
-
-    
-    public function updatePassword(){
-        $session = $this->request->session();
-        $session -> write('id',1);
-        $data = $this->account->find('all',['conditions'=>['ID ='=>"1"]]);
-        $data->select(['MAIL', 'PASS']);
-        $this->set('data',$data);
-        $entity = $this->account->newEntity();
-        foreach($data as $obj):
-            $mail = $obj->MAIL;
-            $pass = $obj->PASS;
-        endforeach;
-        $this->set('entity',$entity);
-        
-        if($this->request->is('post')){
-            if(strcmp($this->request->data['now_password'],$pass) == 0){       //パスワードが入力されたものと登録されたPWが同じか確認
-                if(strcmp($this->request->data['new_password'], $this->request->data['check_password']) == 0){   //入力された新しいパスワードが同じものか確認
-                    //変更を保存し、メールを送る
-                    $ent = $this->account->get($session->read('id'));
-                    $ent->PASS = $this->request->data['new_password'];
-                    //var_dump($ent);
-                    $this->account->save($ent);
-                    
-                    mb_language("Japanese");
-                    mb_internal_encoding("UTF-8");
-                    $to = $mail;  //送信先
-                    $title = "パスワードが変更されました";   //タイトル
-                    $content = "パスワードの変更が完了しました。";   //本文
-                    if(mb_send_mail($to, $title, $content)){
-                    echo "変更されました。";
-                    }
-                }else{
-                    //確認用passが違う出力
-                    echo "入力された内容が異なります。";
-                    $this->redirect(['action' => 'update_password']);
-                }
-            }else{
-                //PW不一致
-                echo "入力されたパスワードが違います";
-                $this->redirect(['action' => 'update_password']);
-            }
-        }
-    }
     
     public function accountinformation(){
         $session = $this->request->session();
