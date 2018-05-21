@@ -158,7 +158,6 @@ class FunanaController extends AppController{
     }
     
     public function qrReader(){
-        $session = $this->request->session();
     }
     
     public function readAfter(){
