@@ -13,7 +13,7 @@
         <?=$this->Form->end() ?>
     <?php endforeach; ?>
     <tr>
-        <?=$this->Form->create($entity,['url'=>['action'=>'addRecord']]) ?>
+        <?=$this->Form->create($entity,['url'=>['action'=>'editFruit']]) ?>
             <td><?=$this->Form->text("ITEM_NAME", ['placeholder'=>'趣味や特技を入力してね！！']) ?></td>
             <td><?=$this->Form->text("CONTENT", ['placeholder'=>'何が好き・得意・かな？？']) ?></td>
             <td><?= $this->Form->button('送信') ?></td>
