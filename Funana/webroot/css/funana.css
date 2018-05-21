@@ -290,6 +290,117 @@ input.searchTxtbox{
 .tradeBtn {
 	width: 230px;
 }
+/*アカウント情報表示・編集画面*/
+#account_information {
+	text-align: center;
+}
+#editMyIcon {
+	margin-top: 3%;
+}
+table.account_table {
+	border-width: 0;
+	text-align: center;
+	width: 100%;
+}
+.editAcc {
+	font-size: 200%;
+	text-align: left;
+}
+#editIdTxt {
+	padding-left: 3%;
+}
+#editId {
+	text-align: right;
+	padding: 1.5% 3% 1.5% 0%;
+}
+#editNameTxt {
+	padding-left: 3%;
+}
+#editName {
+	text-align: right;
+	padding: 1.5% 3% 0% 0%;
+}
+#editMailTxt {
+	padding-left: 3%;
+}
+#editMail {
+	text-align: right;
+	padding: 1.5% 3% 0% 0%;
+}
+#text_Form {
+	text-align: right;
+	padding: 0% 3% 1.5% 0%;
+}
+input.editTxtbox{
+	font-size: 20px;
+	text-align: left;
+}
+#editPassTxt {
+	padding-left: 3%;
+}
+#editPass {
+	text-align: right;
+	padding: 1.5% 3% 1.5% 0%;
+	animation: ripple .6s;
+}
+#editPhoneTxt {
+	padding-left: 3%;
+}
+#editPhone {
+	text-align: right;
+	padding: 1.5% 3% 1.5% 0%;
+}
+#saveBtn{
+	vertical-align: middle;
+}
+button.saveBtn {
+	border-radius: 30px;
+	font-size: 1.4em;
+	font-weight: bold;
+	padding: 10px 30px;
+	background-color: #FF3300;
+	color: #fff;
+	border-style: none;
+	text-align: center;
+	vertical-align: middle;
+	width: 120px;
+	height: 60px;
+}
+#trEditPass {
+	cursor: pointer;
+	animation: ripple .6s;
+}
+#trEditPhone {
+	cursor: pointer;
+	animation: ripple .6s;
+}
+#trEditPass:hover {
+	background-color: #E6E6E6;
+}
+#trEditPhone:hover {
+	background-color: #E6E6E6;
+}
+.toEdit {
+	color: #C0C0C0;
+	margin-left: 2em;
+	font-weight: bold;
+	font-size: 80%;
+}
+button.backBtn {
+	border-radius: 30px;
+	font-size: 1.4em;
+	font-weight: bold;
+	padding: 10px 30px;
+	background-color: #FF3300;
+	color: #fff;
+	border-style: none;
+	text-align: center;
+	vertical-align: middle;
+	width: 250px;
+	height: 60px;
+	margin-top: 3%;
+	margin-bottom: 3%;
+}
 /*パスワード変更画面*/
 #uppass{
 	text-align: center;
