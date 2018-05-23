@@ -157,11 +157,8 @@ class FunanaController extends AppController{
         $this->set('data',$data);
         //実情報編集
         if($this->request->is('post')){
-           $account = $this->fruit->newEntity($this->request->data);
-           $entity = $this->fruit->get($session->read('id'));
-           $this->skin->patchEntity($entity, $this->request->data);
-           $this->fruit->save($entity);
-           $this->set('entity',$entity);
+           $fruit = $this->fruit->newEntity($this->request->data);
+           $this->fruit->save($fruit);
         }
     }
     
@@ -170,14 +167,23 @@ class FunanaController extends AppController{
         $session = $this->request->session();
         $this->set('entity',$this->fruit->newEntity());
         $session->write('id',1);
+        $id = $session->read('id');
         $data = $this->fruit->find('all',[
-            'conditions'=>['ID' => $session->read('id')]
+            'conditions'=>['ID' => $id]
         ]);
+        $iddata = $this->fruit->find('all')->where(['id'=>$id]);
+        //一番数字の大きいidを取得して、プラス１してる
+        foreach($iddata as $obj){
+            $maxid = $obj->ITEM_ID;
+        }
+        $maxid += 1;
         $this->set('data',$data);
+        $this->set('maxid',$maxid);
+        $this->set('id',$id);
     }
     
     //実情報追加機能
-    public function editFruit(){
+    public function addFruit(){
         $session = $this->request->session();
         if($this->request->is('post')){
             $fruit = $this->fruit->newEntity($this->request->data);
