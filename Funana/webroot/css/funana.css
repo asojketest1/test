@@ -432,6 +432,17 @@ button.decideBtn {
 	width: 180px;
 	height: 60px;
 }
+/*フルーツアニメーション画面*/
+#animeField {
+	text-align: center;
+}
+.anime {
+	width: 100%;
+}
+.fruitQR {
+	margin: 30% 10%;
+	width: 80%;
+}
 /*アカウント情報表示・編集画面*/
 #account_information {
 	text-align: center;
