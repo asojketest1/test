@@ -38,5 +38,13 @@
     		window.location.href = 'http://localhost/group/funana';
   		}
 	});
+	
+	$("#trEditPass").click(function() {
+  	    window.location.href = 'http://localhost/group/funana/update-password';
+	});
+	$("#trEditPhone").click(function() {
+  	    window.location.href = 'http://localhost/group/funana/update-phone';
+	});
+
 
 });
