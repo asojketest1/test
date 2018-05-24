@@ -6,7 +6,7 @@
 </script>
 <div class="mod_form">
     <?php $i=0; ?>
-    <?=$this->Form->create(null,['url'=>['action'=>'tradefruit_animation']]) ?>
+    <?=$this->Form->create(null,['url'=>['action'=>'tradefruit']]) ?>
         <div id="predata" class="checkbox02">
             <label>
                 <?=$this->Form->checkbox("CONTENT", ['name'=>'checkbox01', 'class'=>'checkbox01-input']) ?>
