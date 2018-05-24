@@ -290,6 +290,148 @@ input.searchTxtbox{
 .tradeBtn {
 	width: 230px;
 }
+/*送る情報選択画面*/
+.mod_form {
+	margin: 5%;
+}
+#predata {
+	font-size: 180%;
+	margin-bottom: 5%;
+}
+#tbselect {
+	font-size: 200%;
+	width: 100%;
+}
+.mod_form table tbody {
+	border-spacing: 20%;
+}
+.checkbox01-input{
+  	display: none;
+}
+.checkbox01-parts{
+	padding-left: 40px;
+	position:relative;
+	margin-right: 40px;
+}
+.checkbox01-parts::before{
+	  content: "";
+	  display: block;
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 30px;
+	  height: 30px;
+	  border: 1px solid;
+	  border-radius: 4px;
+}
+.checkbox01-input:checked + .checkbox01-parts::after{
+	  content: "";
+	  display: block;
+	  position: absolute;
+	  top: -10px;
+	  left: 10px;
+	  width: 14px;
+	  height: 28px;
+	  transform: rotate(40deg);
+	  border-bottom: 3px solid;
+	  border-right: 3px solid;
+}
+.tdcontent {
+	color: #C0C0C0;
+}
+.switch {
+	text-align: right;
+}
+.switch__label {
+	width: 100px;
+	position: relative;
+	display: inline-block;
+}
+.switch__content {
+	display: block;
+  	cursor: pointer;
+  	position: relative;
+  	border-radius: 60px;
+  	height: 62px;
+	overflow: hidden;
+}
+.switch__content:before {
+	content: "";
+	display: block;
+	position: absolute;
+	width: calc(100% - 3px);
+	height: calc(100% - 3px);
+	top: 0;
+	left: 0;
+	border: 1.5px solid #E5E5EA;
+	border-radius: 60px;
+	background-color: #fff;
+}
+.switch__content:after {
+	content: "";
+	display: block;
+	position: absolute;
+	background-color: transparent;
+	width: 0;
+	height: 0;
+	top: 50%;
+	left: 50%;
+	border-radius: 60px;
+	-webkit-transition: all .5s;
+	   -moz-transition: all .5s;
+	    -ms-transition: all .5s;
+	     -o-transition: all .5s;
+	        transition: all .5s;
+}
+.switch__input {
+	display: none;
+}
+
+.switch__circle {
+	display: block;
+	top: 4px;
+	left: 4px;
+	position: absolute;
+	-webkit-box-shadow: 0 2px 6px #999;
+	        box-shadow: 0 2px 6px #999;
+	width: 54px;
+	height: 54px;
+	-webkit-border-radius: 40px;
+	        border-radius: 40px;
+	background-color: #fff;
+	-webkit-transition: all .5s;
+	   -moz-transition: all .5s;
+	    -ms-transition: all .5s;
+	     -o-transition: all .5s;
+	        transition: all .5s;
+}
+.switch__input:checked ~ .switch__circle {
+	left: 42px;
+}
+.switch__input:checked ~ .switch__content:after {
+	background-color: #FF3300;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+#divDecideBtn {
+	text-align: center;
+	margin-top: 5%;
+}
+button.decideBtn {
+	border-radius: 30px;
+	font-size: 1.4em;
+	font-weight: bold;
+	padding: 10px 30px;
+	background-color: #FF3300;
+	color: #fff;
+	border-style: none;
+	text-align: center;
+	vertical-align: middle;
+	width: 180px;
+	height: 60px;
+}
 /*アカウント情報表示・編集画面*/
 #account_information {
 	text-align: center;
