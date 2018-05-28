@@ -440,8 +440,23 @@ button.decideBtn {
 	width: 100%;
 }
 .fruitQR {
-	margin: 30% 10%;
+	margin: 30% 10% 10% 10%;
 	width: 80%;
+}
+button.tfHomeBtn {
+	border-radius: 40px;
+	font-size: 1.8em;
+	font-weight: bold;
+	padding: 10px 30px;
+	background-color: #FF3300;
+	color: #fff;
+	border-style: none;
+	text-align: center;
+	vertical-align: middle;
+	width: 280px;
+	height: 80px;
+	margin-top: 0px;
+	margin-bottom: 5%;
 }
 /*アカウント情報表示・編集画面*/
 #account_information {
