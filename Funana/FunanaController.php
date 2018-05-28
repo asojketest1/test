@@ -1,6 +1,10 @@
 <?php
 namespace App\Controller;
 
+echo  $this->Html->css('funana');
+echo  $this->fetch('css');
+
+
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
 
@@ -29,7 +33,7 @@ class FunanaController extends AppController{
         $this->set('data',$data);
         $this->set('entity',$this->account->newEntity());
     }
-    
+
     public function registConfirmation($length = 5){
         if($this->request->is('post')){
             $name = $_POST['NAME'];
@@ -66,7 +70,7 @@ class FunanaController extends AppController{
                 $new->ITEM_NAME = "趣味";
                 $new->CONTENT = "音楽鑑賞";
                 $this->fruit->save($new);//実テーブルを仮作成
-                
+
                 $new_skin = $this->fruit->newEntity();
                 $new_skin->ID = $session->read('id');
                 if($this->skin->save($new_skin)){//皮テーブル作成
@@ -76,7 +80,7 @@ class FunanaController extends AppController{
             $this->set('entity',$account_data);
         }
     }
-    
+
     //ログイン画面
     public function login(){
         $session = $this->request->session();
@@ -92,28 +96,27 @@ class FunanaController extends AppController{
             }
         }
     }
-    
+
     //ログアウト
     public function logout(){
         unset($session);
         return $this->redirect(['action'=>'index']);
     }
-    
+
     //友達一覧
     public function friendList(){
-        if($this->request->is('post')){
-            $data = $this->account->find('all')->where(['id'=>$session->read('id')]);
-            if(count($data) > 0){
-                foreach($data as $obj):
-                if(strcmp($obj->pass, $_POST['pass']) == 0){
-                    $session->write('id',$obj->id);
-                    return $this->redirect(['action'=>'choice']);
-                }
-                endforeach;
-            }
-        }
+        $session = $this->request->session();
+        $this->set('entity',$this->account->newEntity());
+        $data = $this->account->find('all')->where(['id'=>$session->read('id')]);
+        $this->set('data',$data);
+        $record = $this->record->find('all',['conditions'=>['ID ='=>"1"]]);
+        $friends = $record->count();
+        $this->set('friends',$friends);
+        $my_friends = $this->skin->find('all',['conditions'=>['ID'=>"2"]]);
+        $this->set('my_friends',$my_friends);
     }
-    
+
+
     //皮情報
     public function skin(){
         //皮情報表示
@@ -133,7 +136,7 @@ class FunanaController extends AppController{
             $this->set('entity',$entity);
         }
     }
-    
+
     //皮編集画面
     public function skinEdit(){
         $session = $this->request->session();
@@ -144,7 +147,7 @@ class FunanaController extends AppController{
         ]);
         $this->set('data',$data);
     }
-    
+
     //実情報
     public function fruit(){
         //実情報表示
@@ -157,11 +160,11 @@ class FunanaController extends AppController{
         $this->set('data',$data);
         //実情報編集
         if($this->request->is('post')){
-           $fruit = $this->fruit->newEntity($this->request->data);
-           $this->fruit->save($fruit);
+           $account = $this->fruit->newEntity($this->request->data);
+           $this->fruit->save($account);
         }
     }
-    
+
     //実編集画面
     public function fruitEdit(){
         $session = $this->request->session();
@@ -172,18 +175,16 @@ class FunanaController extends AppController{
             'conditions'=>['ID' => $id]
         ]);
         $iddata = $this->fruit->find('all')->where(['id'=>$id]);
-        //一番数字の大きいidを取得して、プラス１してる
         foreach($iddata as $obj){
-            $maxid = $obj->ITEM_ID;
+            $maxid =  $obj->ITEM_ID;
         }
-        $maxid += 1;
-        $this->set('data',$data);
         $this->set('maxid',$maxid);
+        $this->set('data',$data);
         $this->set('id',$id);
     }
-    
+
     //実情報追加機能
-    public function addFruit(){
+    public function editFruit(){
         $session = $this->request->session();
         if($this->request->is('post')){
             $fruit = $this->fruit->newEntity($this->request->data);
@@ -191,16 +192,16 @@ class FunanaController extends AppController{
             $this->redirect(['action' => 'fruit']);
         }
     }
-    
+
     //実情報の削除機能
     public function deleteFruit(){
         if($this->request->is('post')){
             $entity = $this->fruit->get($session->read('id'));
-            $this->Takebookarticles->delete($entity);
+            $this->fruit->delete($entity);
         }
         return $this->redirect(['action' => 'fruitEdit']);
     }
-    
+
     //友達一覧タップ後の皮情報表示
     public function friendsprofileAfterPeel(){
         $session = $this->request->session();
@@ -212,7 +213,7 @@ class FunanaController extends AppController{
         ]);
         $this->set('data',$data);
     }
-    
+
     //QR読み取り後画面
     public function afterReadqr(){
         $session = $this->request->session();
@@ -223,7 +224,7 @@ class FunanaController extends AppController{
         ]);
         $this->set('skin',$skin);
     }
-    
+
     //パスワード変更確認メール送信機能
     public function updatePassword(){
         $session = $this->request->session();
@@ -270,7 +271,7 @@ class FunanaController extends AppController{
             }
         }
     }
-    
+
     public function accountinformation(){
         $session = $this->request->session();
         $session->write('id',1);
@@ -293,11 +294,44 @@ class FunanaController extends AppController{
             $this->set('entity',$entity);
         }
     }
-    
+
     public function qrReader(){
     }
-    
+
     public function readAfter(){
         $this->set('content',$this->request->data['content']);
+    }
+
+    public function exchangeInformation(){
+        $session = $this->request->session();
+        $session->write('id',1);
+        //送信が確定されている皮情報表示
+        $skin = $this->skin->find('all',[
+            'conditions'=>['ID' => $session->read('id')]
+        ]);
+        $this->set('skin',$skin);
+        //送信時にチェックする実情報表示
+        $fruit = $this->fruit->find('all',[
+            'conditions'=>['ID' => $session->read('id')]
+        ]);
+        $this->set('fruit',$fruit);
+        $this->set('entity',$this->fruit->newEntity());
+    }
+
+    public function afterExchangeInformation(){
+        $session = $this->request->session();
+        $session->write('id',1);
+        $check = "";
+        if (isset($_POST['check'])){
+            foreach($_POST['check'] as $obj){
+                $ent = $this->record->newEntity();
+                $ent->ID = $session->read('id');
+                $ent->RECORD_ID = "2";
+                $ent->ITEM_ID = $obj;
+                echo $obj;
+                $this->record->save($ent);
+            }
+        }
+        $this->set('check',$check);
     }
 }
