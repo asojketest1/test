@@ -1,17 +1,16 @@
-<h1>プロフィール情報</h1>
-<table>
-    <?php foreach($skin as $obj): ?>
-    <tr>
-        <td>名前：</td>
-        <td><?=$obj->REAL_NAME ?></td>
-    </tr>
-    <tr>
-        <td>所属会社・学校：</td>
-        <td><?=$obj->TEAM ?></td>
-    </tr>
-    <tr>
-        <td>相手から受け取った</td>
-        <td>実情報を表示します</td>
-    </tr>
-    <?php endforeach; ?>
-</table>
+<div class="loginImg" style="position:relative;">
+
+    <div style="position:absolute; top:30%; left:22%; bottom:30%; right:22%; margin:auto;">
+        <div id="loginTxt">
+            <?=$this->Form->create(null, ['type'=>'post','url'=>['action'=>'afterreadqr']]) ?>
+            <div id="passTxt">この画面にアクセスするには設定されているパスワードが必要です。</div>パスワードがわからない場合は
+            このプロフィールの本人に聞いてください</div>
+                <?=$this->Form->text("password", ['style'=>"width:25em; padding:1em;", 'class'=>'passwordTxtbox', 'placeholder'=>'パスワード',   ['size'=>5]]) ?>
+                <div id="divSignInBtn">
+                    <?=$this->Form->button('OK', ['type'=>'submit', 'div'=>'false',
+                                                                    'class'=>'signInBtn']) ?>
+                </div>
+            <?=$this->Form->end(); ?>
+        </div>
+    </div>
+</div>
