@@ -1,6 +1,10 @@
 <?php
 namespace App\Controller;
 
+echo  $this->Html->css('funana');
+echo  $this->fetch('css');
+
+
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
 
