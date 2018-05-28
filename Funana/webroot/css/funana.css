@@ -458,6 +458,42 @@ button.tfHomeBtn {
 	margin-top: 0px;
 	margin-bottom: 5%;
 }
+/*相手の実情報画面*/
+#insideImgTp {
+	text-align: center;
+	margin: 5%;
+}
+#insideImgBtm {
+	text-align: center;
+	margin: 5%;
+}
+.inLR {
+	width: 13%;
+}
+.inC {
+	width: 10%;
+}
+#insideTable {
+	border-spacing: 0;
+	width: 100%;
+}
+#insideTable tr {
+	list-style: none;
+	font-size: 300%;
+	text-align: center;
+}
+#insideTable tr:nth-child(odd) {
+	background-color:#EBEBEB;
+}
+.inscategory {
+	text-align: left;
+	padding-top: 3%;
+	padding-bottom: 3%;
+	padding-left: 5%;
+}
+.inscontent {
+	text-align: left;
+}
 /*アカウント情報表示・編集画面*/
 #account_information {
 	text-align: center;
