@@ -1,115 +1,139 @@
-<h1>皮情報表示</h1>
-<?=$this->Form->create($entity,['url'=>['action'=>'fruit']]) ?>
-<div class="changeBtn"><?=$this->Form->button("実情報に切り替える") ?></div>
-<?=$this->Form->end() ?>
-<table class="profileScreen">
-    <?php foreach($data as $obj): ?>
-        <tr class="text_form">
-            <td id="">本名：</td>
-            <td><?=$obj->REAL_NAME ?></td>
-        </tr>
-        <tr class="text_form">
-            <td>所属会社・学校：</td>
-            <td><?=$obj->TEAM ?></td>
-        </tr>
-        <tr class="text_form">
-            <td>得意科目：</td>
-            <td><?=$obj->SUBJECT ?></td>
-        </tr>
-        <tr>
-            <td>作業時の雰囲気は？？</td>
-            <td>
-                <?php
-                    switch ($obj->S_or_T) {
-                        case 0:
-                            echo "黙々やります！";
-                            break;
-                        case 1:
-                            echo "どちらでも可！";
-                            break;
-                        case 2:
-                            echo "話しながらやりたい！";
-                        break;
-                    }
-                ?>
+<script>
+    window.onload=function(){
+        var hd=document.getElementById('header'); 
+        hd.style.display='block'; 
+    }      
+</script>
+<?php foreach($data as $obj): ?>
+    <table class="profileScreen">
+        <tr id="outsideBase">
+            <td id="outsideIcon" style="background-size: 300px; 
+                                background-image: url('../img/appleskin.png');"><?//controllerで画像切り替え
+                                                                                　//orangeはsize:350px, bananaはsize:450px ?>
+                <?=$this->Html->image('naru.jpg', ['class'=>'outsideIcon']) ?>
             </td>
-        </tr>
-        <tr>
-            <td>パソコン派？？手書き派？？</td>
-            <td>
-                <?php
-                    switch ($obj->P_or_P) {
-                        case 0:
-                            echo "パソコン派！";
-                            break;
-                        case 1:
-                            echo "どちらでも可！";
-                            break;
-                        case 2:
-                            echo "手書き派！";
-                        break;
-                    }
-                ?>
+            <td id="outsideInfo" style="background-size: 300px; 
+                                background-image: url('../img/appleframe.png');"><?//controllerで画像切り替え
+                                                                                　//sizeは上と同じ ?>
+                <div class="outTxt">
+                    <div class="outcate">名前：</div>
+                    <div class="outcon"><?=$obj->REAL_NAME ?></div>
+                </div>
+                <div class="outTxt">
+                    <div class="outcate">所属：</div>
+                    <div class="outcon"><?=$obj->TEAM ?></div>
+                </div>
+                <div class="outTxt">
+                    <div class="outcate">得意科目：</div>
+                    <div class="outcon"><?=$obj->SUBJECT ?></div>
+                </div>
             </td>
-        </tr>
         <tr>
-            <td>改良派？？創造派？？</td>
-            <td>
-                <?php
-                    switch ($obj->I_or_M) {
-                        case 0:
-                            echo "改良派！";
-                            break;
-                        case 1:
-                            echo "どちらでも可！";
-                            break;
-                        case 2:
-                            echo "創造派！";
+    </table>
+    <div class="divoutsel">
+        <div class="outsel">
+            <div>▶黙々作業する？</div>
+            <div>　喋りながら作業する？</div>
+        </div>
+        <span><?=$this->Html->image('silent.png', ['class'=>'outMark']) ?></span>
+        <span>
+            <?php //選択しているフルーツによって画像を変える
+                switch ($obj->S_or_T) {
+                    case 0:
+                        echo $this->Html->image("appleleft.png", ["class"=>"seekbar"]);
                         break;
-                    }
-                ?>
-            </td>
-        </tr>
-        <tr>
-            <td>仕事好き？？遊び好き？？</td>
-            <td>
-                <?php
-                    switch ($obj->W_or_O) {
-                        case 0:
-                            echo "仕事好き！";
-                            break;
-                        case 1:
-                            echo "どちらでも可！";
-                            break;
-                        case 2:
-                            echo "遊び好き！";
+                    case 1:
+                        echo $this->Html->image('applecenter.png', ['class'=>'seekbar']);
                         break;
-                    }
-                ?>
-            </td>
-        </tr>
-        <tr>
-            <td>考察タイプ？？実行タイプ？？</td>
-            <td>
-                <?php
-                    switch ($obj->I_or_C) {
-                        case 0:
-                            echo "考察タイプ！";
-                            break;
-                        case 1:
-                            echo "どちらでも可！";
-                            break;
-                        case 2:
-                            echo "実行タイプ！";
+                    case 2:
+                        echo $this->Html->image('appleright.png', ['class'=>'seekbar']);
+                    break;
+                }
+            ?>
+        </span>
+        <span><?=$this->Html->image('talk.png', ['class'=>'outMark']) ?></span>
+    </div>
+    <div class="divoutsel">
+        <div class="outsel">
+            <div>▶パソコン派？</div>
+            <div>　手書き派？</div>
+        </div>
+        <span><?=$this->Html->image('pc.png', ['class'=>'outMark']) ?></span>
+        <span>
+            <?php //選択しているフルーツによって画像を変える
+                switch ($obj->P_or_P) {
+                    case 0:
+                        echo $this->Html->image("appleleft.png", ["class"=>"seekbar"]);
                         break;
-                    }
-                ?>
-            </td>
-        </tr>
-        <tr class="saveBtn">
-        <?=$this->Form->create($entity,['url'=>['action'=>'skin_edit']]) ?>
-            <td><?=$this->Form->button("編集する") ?></td>
+                    case 1:
+                        echo $this->Html->image('applecenter.png', ['class'=>'seekbar']);
+                        break;
+                    case 2:
+                        echo $this->Html->image('appleright.png', ['class'=>'seekbar']);
+                        break;
+                }
+            ?>
+        </span>
+        <span><?=$this->Html->image('write.png', ['class'=>'outMark']) ?></span>
+    </div>
+    <div class="divoutsel">
+        <div class="outsel">
+            <div>▶新しいものを創造するのが得意？</div>
+            <div>　今あるものを改良するのが得意？</div>
+        </div>
+        <span><?=$this->Html->image('new.png', ['class'=>'outMark']) ?></span>
+        <span>
+            <?php //選択しているフルーツによって画像を変える
+                switch ($obj->I_or_M) {
+                    case 0:
+                        echo $this->Html->image("appleleft.png", ["class"=>"seekbar"]);
+                        break;
+                    case 1:
+                        echo $this->Html->image('applecenter.png', ['class'=>'seekbar']);
+                        break;
+                    case 2:
+                        echo $this->Html->image('appleright.png', ['class'=>'seekbar']);
+                    break;
+                }
+            ?>
+        </span>
+        <span><?=$this->Html->image('change.png', ['class'=>'outMark']) ?></span>
+    </div>
+    <div class="divoutsel">
+        <div class="outsel">
+            <div>▶アイディア出しが好き？</div>
+            <div>　完成させる方が好き？</div>
+        </div>
+        <span><?=$this->Html->image('idea.png', ['class'=>'outMark']) ?></span>
+        <span>
+            <?php
+                switch ($obj->I_or_C) {
+                    case 0:
+                        echo $this->Html->image("appleleft.png", ["class"=>"seekbar"]);
+                        break;
+                    case 1:
+                        echo $this->Html->image('applecenter.png', ['class'=>'seekbar']);
+                        break;
+                    case 2:
+                        echo $this->Html->image('appleright.png', ['class'=>'seekbar']);
+                        break;
+                }
+            ?>
+        </span>
+        <span><?=$this->Html->image('make.png', ['class'=>'outMark']) ?></span>
+    </div>
+<?php endforeach; ?>
+<table id="skinBtns">
+    <tr>
+        <td id="mchangeBtn">
+            <?=$this->Form->create(null,['url'=>['action'=>'fruit']]) ?>
+                <?=$this->Form->button("皮を剥く", ['type'=>'submit', 'div'=>'false', 'class'=>'changeBtn']) ?>
             <?=$this->Form->end() ?>
-        </tr>
-    <?php endforeach; ?>
+        </td>
+        <td id="editBtn">
+            <?=$this->Form->create(null,['url'=>['action'=>'skin_edit']]) ?>
+                <?=$this->Form->button("編集する", ['type'=>'submit', 'div'=>'false', 'class'=>'editBtn']) ?>
+            <?=$this->Form->end() ?>
+        </td>
+    </tr>
 </table>

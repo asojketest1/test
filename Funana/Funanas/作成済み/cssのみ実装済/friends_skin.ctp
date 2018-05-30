@@ -125,6 +125,6 @@
 <?php endforeach; ?>
 <div id="changeBtn">
     <?=$this->Form->create($entity,['url'=>['action'=>'friends_fruit']]) ?>
-        <?=$this->Form->button("皮を剥く", ['class'=>'changeBtn']) ?>
+        <?=$this->Form->button("皮を剥く", ['type'=>'submit', 'div'=>'false', 'class'=>'changeBtn']) ?>
     <?=$this->Form->end() ?>
 </div>

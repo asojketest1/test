@@ -290,6 +290,26 @@ input.searchTxtbox{
 .tradeBtn {
 	width: 230px;
 }
+/*自分の皮情報画面*/
+#skinBtns {
+	text-align: center;
+	width: 100%;
+	margin-top: 3%;
+	margin-bottom: 3%;
+}
+button.editBtn {
+	border-radius: 40px;
+	font-size: 1.8em;
+	font-weight: bold;
+	padding: 10px 30px;
+	background-color: #FF3300;
+	color: #fff;
+	border-style: none;
+	text-align: center;
+	vertical-align: middle;
+	width: 220px;
+	height: 80px;
+}
 /*送る情報選択画面*/
 .mod_form {
 	margin: 5%;
