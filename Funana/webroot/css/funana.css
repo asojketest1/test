@@ -458,6 +458,76 @@ button.tfHomeBtn {
 	margin-top: 0px;
 	margin-bottom: 5%;
 }
+/*相手の皮情報画面*/
+.profileScreen {
+	width: 100%;
+	margin-right: 0;
+}
+#outsideBase {
+	height: 400px;
+}
+#outsideIcon {
+	background-position: center center;
+	background-repeat: no-repeat;
+	width: 50%;
+	text-align: center;
+}
+.outsideIcon {
+	width: 200px;
+	border-radius: 50%;
+	position: relative;
+	top: 30px;
+}
+#outsideInfo {
+	background-position: center center;
+	background-repeat: no-repeat;
+	width: 50%;
+}
+.outTxt {
+	position: relative;
+	top: 30px;
+}
+.outcate {
+	font-size: 120%;
+	padding-left: 35%;
+}
+.outcon {
+	font-size: 170%;
+	text-align: center;
+}
+.outMark {
+	width: 120px;
+}
+.seekbar {
+	width: 450px;
+}
+.divoutsel {
+	text-align: center;
+	padding-top: 2%;
+	padding-bottom: 2%;
+}
+.outsel {
+	font-size: 180%;
+}
+#changeBtn{
+	text-align: center;
+}
+button.changeBtn {
+	border-radius: 40px;
+	font-size: 1.8em;
+	font-weight: bold;
+	padding: 10px 30px;
+	background-color: #FF3300;
+	color: #fff;
+	border-style: none;
+	text-align: center;
+	vertical-align: middle;
+	width: 220px;
+	height: 80px;
+	margin-bottom: 3%;
+	margin-top: 2%;
+}
+
 /*相手の実情報画面*/
 #insideImgTp {
 	text-align: center;
