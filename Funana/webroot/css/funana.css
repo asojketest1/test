@@ -458,6 +458,22 @@ button.tfHomeBtn {
 	margin-top: 0px;
 	margin-bottom: 5%;
 }
+/*QRコード読み取り後画面*/
+#accessTxt {
+	border-style: solid;
+	border-width: 2px;
+	text-align: center;
+	margin: 30% 5%;
+	padding: 5%;
+	background-color: #EBEBEB;
+}
+#accPassTxt {
+	font-size: 155%;
+}
+#accPassTxt2 {
+	font-size: 130%;
+	margin-bottom: 3%;
+}
 /*相手の皮情報画面*/
 .profileScreen {
 	width: 100%;
