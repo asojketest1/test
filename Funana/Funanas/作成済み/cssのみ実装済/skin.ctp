@@ -126,12 +126,12 @@
 <table id="skinBtns">
     <tr>
         <td id="mchangeBtn">
-            <?=$this->Form->create(null,['url'=>['action'=>'fruit']]) ?>
+            <?=$this->Form->create($entity,['url'=>['action'=>'fruit']]) ?>
                 <?=$this->Form->button("皮を剥く", ['type'=>'submit', 'div'=>'false', 'class'=>'changeBtn']) ?>
             <?=$this->Form->end() ?>
         </td>
         <td id="editBtn">
-            <?=$this->Form->create(null,['url'=>['action'=>'skin_edit']]) ?>
+            <?=$this->Form->create($entity,['url'=>['action'=>'skin_edit']]) ?>
                 <?=$this->Form->button("編集する", ['type'=>'submit', 'div'=>'false', 'class'=>'editBtn']) ?>
             <?=$this->Form->end() ?>
         </td>
