@@ -310,6 +310,96 @@ button.editBtn {
 	width: 220px;
 	height: 80px;
 }
+/*自分の皮情報編集画面*/
+.toFruitBtn {
+	width: 100px;
+}
+#toFruitBtn {
+	float: left;
+	margin-left: 20%;
+}
+#editSaveBtn {
+	text-align: right;
+	margin: 3% 20% 5% 0px;
+	float: none;
+}
+#tbEditSkin {
+	width: 100%;
+	text-align: center;
+}
+#skinEditTxt {
+	text-align: center;
+	font-size: 180%;
+	float: left;
+	margin-left: 7%;
+}
+#editNameTxt {
+	text-align: left;
+	margin-bottom: 0px;
+	float: none;
+}
+#editBelTxt {
+	text-align: left;
+	margin-bottom: 0px;
+}
+#editSubTxt {
+	text-align: left;
+	margin-bottom: 0px;
+}
+input.editTxtbox {
+
+	margin-top: 0px;
+	margin-bottom: 10%;
+}
+.radio02 {
+	font-size: 180%;
+}
+.editSkinImg {
+	padding-top: 5%;
+	padding-bottom: 5%; 
+}
+.editSkinL {
+	text-align: right;
+}
+.editSkinR {
+	text-align: left;
+}
+.editMark {
+	width: 90px;
+}
+.radio02-input{
+  	display: none;
+}
+.radio02-input + label{
+  	padding-left: 20px;
+  	position:relative;
+  	margin-right: 20px;
+}
+.radio02-input + label::before{
+  	content: "";
+  	display: block;
+  	position: absolute;
+  	top: 0;
+	left: 0;
+	width: 30px;
+	height: 30px;
+	border: 1px solid;
+	border-radius: 4px;
+
+}
+.radio02-input:checked + label::after{
+	content: "";
+	display: block;
+	position: absolute;
+	top: -10px;
+	left: 10px;
+	width: 14px;
+	height: 28px;
+	transform: rotate(40deg);
+	border-bottom: 3px solid;
+	border-right: 3px solid;
+	color: #FF3300;
+}
 /*送る情報選択画面*/
 .mod_form {
 	margin: 5%;
