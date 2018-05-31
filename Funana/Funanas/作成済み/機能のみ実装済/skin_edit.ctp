@@ -1,81 +1,89 @@
-<h1>皮情報編集</h1>
-<table class="profileScreen">
-<?=$this->Form->create($entity,['url'=>['action'=>'skin']]) ?>
-    <?php foreach($data as $obj): ?>
-        <tr class="text_form">
-            <td id="">本名：</td>
-            <td><?=$obj->REAL_NAME ?></td>
-            <td><?=$this->Form->text("REAL_NAME",['value'=>$obj->REAL_NAME]) ?></td>
-        </tr>
-        <tr class="text_form">
-            <td>所属会社・学校：</td>
-            <td><?=$obj->TEAM ?></td>
-            <td><?=$this->Form->text("TEAM",['value'=>$obj->TEAM]) ?></td>
-        </tr>
-        <tr class="text_form">
-            <?=$this->Form->create($entity,['url'=>['action'=>'skin']]) ?>
-            <td>得意科目：</td>
-            <td><?=$obj->SUBJECT ?></td>
-            <td><?=$this->Form->text("SUBJECT",['value'=>$obj->SUBJECT]) ?></td>
-        </tr>
-        <tr>
-            <td>作業時の雰囲気は？？</td>
-            <td><?=$this->Form->radio("S_or_T",
-                [
-                    ['text'=>'黙々やります！','value'=>0],
-                    ['text'=>'どちらでも可！','value'=>1],
-                    ['text'=>'話しながらやりたい！','value'=>2]
-                ],
-                ['label'=>true,'value'=>$obj->S_or_T])?>
+<script>
+window.onload=function(){
+    var hd=document.getElementById('header'); 
+    hd.style.display='block'; 
+}      
+</script>
+<?=$this->Form->create(null,['url'=>['action'=>'fruit-edit']]) ?>
+<div id="toFruitBtn">
+    <?=$this->Form->submit("toFruit.png", ['class'=>'toFruitBtn']) ?>
+</div>
+<?=$this->Form->end() ?>
+<?=$this->Form->create(null,['url'=>['action'=>'skin']]) ?>
+<div id="editSaveBtn">
+    <?=$this->Form->button("保存", ['type'=>'submit', 'div'=>'false',
+                                                                'class'=>'saveBtn']) ?>
+</div>
+<?php foreach($data as $obj): ?>
+    <div id="skinEditTxt">
+        <div id="editNameTxt">名前</div>
+        <?=$this->Form->text("REAL_NAME",['style'=>"width:40em; padding:1em;", 'class'=>'editTxtbox', 'value'=>$obj->REAL_NAME, ['size'=>100]]) ?><br/>
+        <div id="editBelTxt">所属</div>
+        <?=$this->Form->text("TEAM",['style'=>"width:40em; padding:1em;", 'class'=>'editTxtbox', 'value'=>$obj->TEAM, ['size'=>100]]) ?><br/>
+        <div id="editSubTxt">得意科目</div>
+        <?=$this->Form->text("SUBJECT",['style'=>"width:40em; padding:1em;", 'class'=>'editTxtbox', 'value'=>$obj->SUBJECT, ['size'=>100]]) ?><br/>
+    </div>
+    <table id="tbEditSkin">
+        <tr class="radio02">
+            <td class="editSkinImg"><?=$this->Html->image('silent.png', ['class'=>'editMark']) ?></td>
+            <td class="editSkinL">黙々派</td>
+            <td>
+                <?=$this->Form->radio("S_or_T",
+                    [
+                        ['text'=>'　―――――','value'=>0],
+                        ['text'=>'　―――――','value'=>1],
+                        ['text'=>'','value'=>2]
+                    ],
+                    ['class'=>'radio02-input','value'=>$obj->S_or_T])?>
             </td>
+            <td class="editSkinR">ワイワイ派</td>
+            <td class="editSkinImg"><?=$this->Html->image('talk.png', ['class'=>'editMark']) ?></td>
         </tr>
-        <tr>
-            <td>パソコン派？？手書き派？？</td>
-            <td><?=$this->Form->radio("P_or_P",
-                [
-                    ['text'=>'パソコン派！','value'=>0],
-                    ['text'=>'どちらでも可！','value'=>1],
-                    ['text'=>'手書き派！','value'=>2]
-                ],
-                ['label'=>true,'value'=>$obj->P_or_P])?>
+        <tr class="radio02">
+            <td class="editSkinImg"><?=$this->Html->image('pc.png', ['class'=>'editMark']) ?></td>
+            <td class="editSkinL">パソコン派</td>
+            <td>
+                <?=$this->Form->radio("P_or_P",
+                    [
+                        ['text'=>'　―――――','value'=>0],
+                        ['text'=>'　―――――','value'=>1],
+                        ['text'=>'','value'=>2]
+                    ],
+                    ['class'=>'radio02-input','value'=>$obj->P_or_P])?>
             </td>
+            <td class="editSkinR">手書き派</td>
+            <td class="editSkinImg"><?=$this->Html->image('write.png', ['class'=>'editMark']) ?></td>
         </tr>
-        <tr>
-            <td>改良派？？創造派？？</td>
-            <td><?=$this->Form->radio("I_or_M",
-                [
-                    ['text'=>'改良派！','value'=>0],
-                    ['text'=>'どちらでも可！','value'=>1],
-                    ['text'=>'創造派！','value'=>2]
-                ],
-                ['label'=>true,'value'=>$obj->I_or_M])?>
+        <tr class="radio02">
+            <td class="editSkinImg"><?=$this->Html->image('new.png', ['class'=>'editMark']) ?></td>
+            <td class="editSkinL">創造派</td>
+            <td>
+                <?=$this->Form->radio("I_or_M",
+                    [
+                        ['text'=>'　―――――','value'=>0],
+                        ['text'=>'　―――――','value'=>1],
+                        ['text'=>'','value'=>2]
+                    ],
+                    ['class'=>'radio02-input','value'=>$obj->I_or_M])?>
             </td>
+            <td class="editSkinR">改良派</td>                
+            <td class="editSkinImg"><?=$this->Html->image('change.png', ['class'=>'editMark']) ?></td>
         </tr>
-        <tr>
-            <td>仕事好き？？遊び好き？？</td>
-            <td><?=$this->Form->radio("W_or_O",
-                [
-                    ['text'=>'仕事好き！','value'=>0],
-                    ['text'=>'どちらでも可！','value'=>1],
-                    ['text'=>'遊び好き！','value'=>2]
-                ],
-                ['label'=>true,'value'=>$obj->W_or_O])?>
+        <tr class="radio02">
+            <td class="editSkinImg"><?=$this->Html->image('idea.png', ['class'=>'editMark']) ?></td>
+            <td class="editSkinL">アイディア派</td>
+            <td>
+                <?=$this->Form->radio("I_or_C",
+                    [
+                        ['text'=>'　―――――','value'=>0],
+                        ['text'=>'　―――――','value'=>1],
+                        ['text'=>'','value'=>2]
+                    ],
+                    ['class'=>'radio02-input','value'=>$obj->I_or_C])?>
             </td>
+            <td class="editSkinR">実行派</td>                
+            <td class="editSkinImg"><?=$this->Html->image('make.png', ['class'=>'editMark']) ?></td>
         </tr>
-        <tr>
-            <td>考察タイプ？？実行タイプ？？</td>
-            <td><?=$this->Form->radio("I_or_C",
-                [
-                    ['text'=>'考察タイプ！','value'=>0],
-                    ['text'=>'どちらでも可！','value'=>1],
-                    ['text'=>'実行タイプ！','value'=>2]
-                ],
-                ['label'=>true,'value'=>$obj->I_or_C])?>
-            </td>
-        </tr>
-        <tr class="saveBtn">
-            <td><?=$this->Form->button("保存") ?></td>
-            <?=$this->Form->end() ?>
-        </tr>
-    <?php endforeach; ?>
-</table>
+    </table>
+<?php endforeach; ?>
+<?=$this->Form->end() ?>
