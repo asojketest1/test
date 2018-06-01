@@ -4,12 +4,12 @@ window.onload=function(){
     hd.style.display='block'; 
 }      
 </script>
-<?=$this->Form->create(null,['url'=>['action'=>'fruit-edit']]) ?>
+<?=$this->Form->create($entity,['url'=>['action'=>'fruit-edit']]) ?>
 <div id="toFruitBtn">
     <?=$this->Form->submit("toFruit.png", ['class'=>'toFruitBtn']) ?>
 </div>
 <?=$this->Form->end() ?>
-<?=$this->Form->create(null,['url'=>['action'=>'skin']]) ?>
+<?=$this->Form->create($entity,['url'=>['action'=>'skin']]) ?>
 <div id="editSaveBtn">
     <?=$this->Form->button("保存", ['type'=>'submit', 'div'=>'false',
                                                                 'class'=>'saveBtn']) ?>
