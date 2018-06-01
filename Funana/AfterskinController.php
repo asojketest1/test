@@ -13,9 +13,9 @@ class AfterskinController extends AppController {
             $id = $_GET['id'];
             print("$id<br>\n");
         }
-        if (isset($_GET['name'])){
-            $name = $_GET['name'];
-            print("$name<br>\n");
+        if (isset($_GET['qr'])){
+            $qr = $_GET['qr'];
+            print("$qr<br>\n");
         }
     }
 }
