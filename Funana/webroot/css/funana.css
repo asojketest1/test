@@ -400,6 +400,43 @@ input.editTxtbox {
 	border-right: 3px solid;
 	color: #FF3300;
 }
+/*自分の実情報編集画面*/
+.tbfruit {
+	width: 100%;
+	font-size: 180%;
+	text-align: center;
+}
+.editFTxtbox {
+	font-size: 25px;
+}
+button.delBtn {
+	border-color: #FF3300;
+	border-radius: 30px;
+	font-size: 1.4em;
+	font-weight: bold;
+	background-color: #fff;
+	color: #FF3300;
+	border-style: solid;
+	text-align: center;
+	vertical-align: middle;
+	width: 60px;
+	height:60px;
+}
+button.addFormBtn {
+	border-radius: 30px;
+	font-size: 1.4em;
+	font-weight: bold;
+	background-color: #FF3300;
+	color: #fff;
+	border-style: none;
+	text-align: center;
+	vertical-align: middle;
+	width: 60px;
+	height: 60px;
+}
+#fruitSaveBtn {
+	text-align: center;
+}
 /*送る情報選択画面*/
 .mod_form {
 	margin: 5%;
