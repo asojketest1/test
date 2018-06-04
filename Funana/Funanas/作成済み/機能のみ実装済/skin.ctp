@@ -82,7 +82,5 @@
             <td><?=$this->Form->button("保存") ?></td>
             <?=$this->Form->end() ?>
         </tr>
-        
-    <img src="http://chart.apis.google.com/chart?chs=150x150&cht=qr&chl=http://localhost/cakephp/funana/after-readqr?id=<?= $id ?>" alt="QRコード">
     <?php endforeach; ?>
 </table>
