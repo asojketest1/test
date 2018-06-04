@@ -1,10 +1,6 @@
 <?php
 namespace App\Controller;
 
-echo  $this->Html->css('funana');
-echo  $this->fetch('css');
-
-
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
 
@@ -116,7 +112,6 @@ class FunanaController extends AppController{
         $this->set('my_friends',$my_friends);
     }
 
-
     //皮情報
     public function skin(){
         //皮情報表示
@@ -175,12 +170,25 @@ class FunanaController extends AppController{
             'conditions'=>['ID' => $id]
         ]);
         $iddata = $this->fruit->find('all')->where(['id'=>$id]);
+        $entity = $this->fruit->newEntity();
         foreach($iddata as $obj){
             $maxid =  $obj->ITEM_ID;
         }
-        $this->set('maxid',$maxid);
+        $this->set('maxid',++$maxid);
         $this->set('data',$data);
         $this->set('id',$id);
+    }
+
+    //実情報を保存するクラス
+    public function saveFruit(){
+        $session = $this->request->session();
+        $entity = $this->fruit->newEntity();
+        $this->set('entity',$entity);
+        if($this->request->is('post')){
+            $fruit = $this->fruit->newEntity($this->request->data);
+            $this->fruit->save($fruit);
+            $this->redirect(['action' => 'fruit']);
+        }
     }
 
     //実情報追加機能
@@ -217,12 +225,17 @@ class FunanaController extends AppController{
     //QR読み取り後画面
     public function afterReadqr(){
         $session = $this->request->session();
+        //読み取られる
         $session->write('id',1);
         //皮情報表示
         $skin = $this->skin->find('all',[
             'conditions'=>['ID' => $session->read('id')]
         ]);
         $this->set('skin',$skin);
+        $record = $this->fruit->find('all',[
+            'conditions'=>['ID'=>$session->read('id')]
+        ]);
+        $this->set('fruit',$fruit);
     }
 
     //パスワード変更確認メール送信機能
@@ -322,16 +335,68 @@ class FunanaController extends AppController{
         $session = $this->request->session();
         $session->write('id',1);
         $check = "";
-        if (isset($_POST['check'])){
-            foreach($_POST['check'] as $obj){
-                $ent = $this->record->newEntity();
-                $ent->ID = $session->read('id');
-                $ent->RECORD_ID = "2";
-                $ent->ITEM_ID = $obj;
-                echo $obj;
-                $this->record->save($ent);
+        //チェックされた実情報の保存
+        if (isset($_POST['checkbox'])){
+            if(is_array($_POST['checkbox'])){
+                //checkされた情報の表示
+                $check = $_POST['checkbox'];
+                foreach($_POST['checkbox'] as $obj){
+                    $ent = $this->record->newEntity();
+                    $ent->ID = $session->read('id');
+                    $ent->RECORD_ID = "2";
+                    $ent->ITEM_ID = $obj;
+                    $this->record->save($ent);
+                }
             }
         }
         $this->set('check',$check);
+
+        //皮情報表示
+        $skin = $this->skin->find('all',[
+            'conditions'=>['ID =' => $session->read('id')]
+        ]);
+        $this->set('skin',$skin);
+        //実情報表示
+        $fruit = $this->fruit->find('all',[
+            'conditions'=>['ID ='=> $session->read('id')]
+        ]);
+        $this->set('fruit',$fruit);
+    }
+
+    public function profileList(){
+        $session = $this->request->session();
+        $session -> write('id',1);
+        //Record_Tableのentity_recordをセット
+        $this->set('entity_record',$this->record->newEntity());
+        $account = $this->account->find('all',['conditions'=>['ID ='=>$session->read('id')]]);
+        $this->set('id',$session->read('id'));
+        $this->set('account',$account);
+        $record = $this->record->find('all',['conditions'=>['ID ='=>$session->read('id')]]);
+        $friends = $record->count();
+        foreach($record as $obj){
+            $recordId[] = $obj->RECORD_ID;
+        }
+        //検索したか？
+        if($this->request->is('post')){
+            //検索
+            $friend_name = $this->account->find()->where([
+                'NAME like'=>'%'. $this->request->data['search'] .'%']);
+        }else{
+            $friend_name = $this->account->find('all');
+        }
+        $this->set('data',$this->record->find('all'));
+        $this->set('firends',$friends);
+        $this->set('friend',$friend_name);
+        $this->set('recordId',$recordId);
+    }
+
+    public function delRecord(){
+        $session = $this->request->session();
+        $entity_account = $this->record->get($this->request->data['data']);
+        $entity_account = $this->record->find()->where([
+            'ID=' => $session->read('id')
+        ]);
+        $this->record->delete($entity_account);
+        return $this->redirect(['action' => 'profileList']);
     }
 }
