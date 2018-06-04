@@ -66,45 +66,76 @@ class FunanaController extends AppController{
                 $new->ITEM_NAME = "趣味";
                 $new->CONTENT = "音楽鑑賞";
                 $this->fruit->save($new);//実テーブルを仮作成
-                
-                $new_skin = $this->fruit->newEntity();
+
+                $new_skin = $this->skin->newEntity();
                 $new_skin->ID = $session->read('id');
                 if($this->skin->save($new_skin)){//皮テーブル作成
-                    $this->redirect(['action'=>'skinEdit']);
+                    return $this->redirect(['action'=>'skinEdit']);
                 }
             }
             $this->set('entity',$account_data);
         }
     }
-    
+
     //ログイン画面
     public function login(){
         $session = $this->request->session();
         $this->set('entity',$this->account->newEntity());
         if($this->request->is('post')){
-            if(isset($_POST['NAME'])){
-                $data = $this->account->find('all')->where(['NAME' => $_POST['NAME']]);
+            if(isset($_POST['MAIL'])){
+                $data = $this->account->find('all')->where(['MAIL' => $_POST['MAIL']]);
                 foreach($data as $obj){
+                    $session->write('id', $obj->ID);
                     if(strcmp($obj->PASS, $_POST['PASS']) == 0){
-                        return $this->redirect(['action'=>'friendList']);
+                        return $this->redirect(['action'=>'profileList']);
                     }
                 }
             }
         }
     }
-    
+
     //ログアウト
     public function logout(){
         unset($session);
         return $this->redirect(['action'=>'index']);
     }
     
-    //皮情報
+    //友達一覧画面
+    public function profileList(){
+        $session = $this->request->session();
+        //Record_Tableのentity_recordをセット
+        $this->set('entity_record',$this->record->newEntity());
+        $account = $this->account->find('all',['conditions'=>['ID ='=>$session->read('id')]]);
+        $this->set('id',$session->read('id'));
+        $this->set('account',$account);
+        $record = $this->record->find('all',['conditions'=>['ID ='=>$session->read('id')]]);
+        $friends = $record->count();
+        if($friends != 0){
+            foreach($record as $obj){
+                $recordId[] = $obj->RECORD_ID;
+            }
+            $this->set('recordId',$recordId);
+        }else{
+            $this->set('recordId',null);
+        }
+        //検索したか？
+        if($this->request->is('post')){
+            //検索
+            $friend_name = $this->account->find()->where([
+                'NAME like'=>'%'. $this->request->data['search'] .'%']);
+        }else{
+            $friend_name = $this->account->find('all');
+        }
+        $this->set('data',$this->record->find('all'));
+        $this->set('firends',$friends);
+        $this->set('friend',$friend_name);
+    }
+
+    //皮情報  
     public function skin(){
         //皮情報表示
         $session = $this->request->session();
         $this->set('entity',$this->skin->newEntity());
-        $session->write('id',1);
         $data = $this->skin->find('all',[
             'conditions'=>['ID' => $session->read('id')]
         ]);
@@ -118,40 +149,36 @@ class FunanaController extends AppController{
             $this->set('entity',$entity);
         }
     }
-    
+
     //皮編集画面
     public function skinEdit(){
         $session = $this->request->session();
         $this->set('entity',$this->skin->newEntity());
-        $session->write('id',1);
         $data = $this->skin->find('all',[
             'conditions'=>['ID' => $session->read('id')]
         ]);
         $this->set('data',$data);
     }
-    
     //実情報
     public function fruit(){
         //実情報表示
         $session = $this->request->session();
         $this->set('entity',$this->fruit->newEntity());
-        $session->write('id',1);
         $data = $this->fruit->find('all',[
             'conditions'=>['ID' => $session->read('id')]
         ]);
         $this->set('data',$data);
         //実情報編集
         if($this->request->is('post')){
-           $fruit = $this->fruit->newEntity($this->request->data);
-           $this->fruit->save($fruit);
+            $fruit = $this->fruit->newEntity($this->request->data);
+            $this->fruit->save($fruit);
         }
     }
-    
+
     //実編集画面
     public function fruitEdit(){
         $session = $this->request->session();
         $this->set('entity',$this->fruit->newEntity());
-        $session->write('id',1);
         $id = $session->read('id');
         $data = $this->fruit->find('all',[
             'conditions'=>['ID' => $id]
@@ -166,7 +193,7 @@ class FunanaController extends AppController{
         $this->set('maxid',$maxid);
         $this->set('id',$id);
     }
-    
+
     //実情報追加機能
     public function addFruit(){
         $session = $this->request->session();
@@ -176,7 +203,7 @@ class FunanaController extends AppController{
             $this->redirect(['action' => 'fruit']);
         }
     }
-    
+
     //実情報の削除機能
     public function deleteFruit(){
         if($this->request->is('post')){
@@ -185,7 +212,7 @@ class FunanaController extends AppController{
         }
         return $this->redirect(['action' => 'fruitEdit']);
     }
-    
+
     //友達一覧タップ後の皮情報表示
     public function friendsprofileAfterPeel(){
         $session = $this->request->session();
@@ -200,19 +227,33 @@ class FunanaController extends AppController{
     
     //QR読み取り後画面
     public function anyoneReadqr(){
-        $account = $this->account->find('all',['conditions'=>['ID' => "1"]]);
+        $id = $this->request->query['id'];
+        $account = $this->account->find('all',['conditions'=>['ID' => $id]]);
         $this->set('account',$account);
+        $this->set('id',$id);
         foreach($account as $obj)
         if(isset($_POST['password'])){
             //パスワード認証
             if(strcmp($_POST['password'],$obj->QRPASS) == 0){
-                $this->redirect(['action' => 'afterSkin']);
+                $this->redirect(['action' => "afterSkin?id=$id"]);
             }
         }
     }
     
-    //QR読み取り後友達登録画面
+    //QR読み取り後画面
     public function afterReadqr(){
+        $session = $this->request->session();
+        $session -> write('id',2);
+        //送られてきた値をID、RECIRD_ID、ITEM_IDを用いて保存
+        if(isset($this->request->query['id'])){
+            for($i=0; $i < count($this->request->query)-1; $i++ ){
+                echo $session->read('id');
+                echo $this->request->query['id'];
+                echo $this->request->query[$i];
+                $entity = $this->record->newEntity(['ID'=>$session->read('id'),'RECORD_ID'=>$this->request->query['id'],'ITEM_ID'=>$this->request->query[$i]]);
+                $this->record->save($entity);
+            }
+        }
         $session = $this->request->session();
         //読み取られる
         $session->write('id',1);
@@ -221,8 +262,10 @@ class FunanaController extends AppController{
             'conditions'=>['ID' => $session->read('id')]
         ]);
         $this->set('skin',$skin);
-        $record = $this->fruit->find('all',[
-            'conditions'=>['ID'=>$session->read('id')]
+
+        //実情報表示
+        $fruit = $this->fruit->find('all',[
+            'conditions'=>['ID' => $session->read('id')]
         ]);
         $this->set('fruit',$fruit);
     }
@@ -231,8 +274,19 @@ class FunanaController extends AppController{
         //皮情報表示
         $session = $this->request->session();
         $this->set('entity',$this->skin->newEntity());
-        $id = '1';
+        $id = $this->request->query['id'];
         $data = $this->skin->find('all',['conditions'=>['ID' => $id]]);
+        $this->set('data',$data);
+    }
+    
+    public function afterFruit(){
+        //相手の実情報表示
+        $session = $this->request->session();
+        $this->set('entity',$this->fruit->newEntity());
+        $session->write('id',1);
+        $data = $this->fruit->find('all',[
+            'conditions'=>['DISPLAY' => 1]
+        ]);
         $this->set('data',$data);
     }
     
@@ -381,34 +435,6 @@ class FunanaController extends AppController{
         $this->set('content',$this->request->data['content']);
     }
     
-    //友達一覧
-    public function profileList(){
-        $session = $this->request->session();
-        $session -> write('id',1);
-        //Record_Tableのentity_recordをセット
-        $this->set('entity_record',$this->record->newEntity());
-        $account = $this->account->find('all',['conditions'=>['ID ='=>$session->read('id')]]);
-        $this->set('id',$session->read('id'));
-        $this->set('account',$account);
-        $record = $this->record->find('all',['conditions'=>['ID ='=>$session->read('id')]]);
-        $friends = $record->count();
-        foreach($record as $obj){
-            $recordId[] = $obj->RECORD_ID;
-        }
-        //検索したか？
-        if($this->request->is('post')){
-            //検索
-            $friend_name = $this->account->find()->where([
-                'NAME like'=>'%'. $this->request->data['search'] .'%']);
-        }else{
-            $friend_name = $this->account->find('all');
-        }
-        $this->set('data',$this->record->find('all'));
-        $this->set('firends',$friends);
-        $this->set('friend',$friend_name);
-        $this->set('recordId',$recordId);
-    }
-
     public function delRecord(){
         $session = $this->request->session();
         $entity_account = $this->record->get($this->request->data['data']);
