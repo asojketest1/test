@@ -435,6 +435,34 @@ class FunanaController extends AppController{
         $this->set('content',$this->request->data['content']);
     }
     
+    //友達一覧
+    public function profileList(){
+        $session = $this->request->session();
+        $session -> write('id',1);
+        //Record_Tableのentity_recordをセット
+        $this->set('entity_record',$this->record->newEntity());
+        $account = $this->account->find('all',['conditions'=>['ID ='=>$session->read('id')]]);
+        $this->set('id',$session->read('id'));
+        $this->set('account',$account);
+        $record = $this->record->find('all',['conditions'=>['ID ='=>$session->read('id')]]);
+        $friends = $record->count();
+        foreach($record as $obj){
+            $recordId[] = $obj->RECORD_ID;
+        }
+        //検索したか？
+        if($this->request->is('post')){
+            //検索
+            $friend_name = $this->account->find()->where([
+                'NAME like'=>'%'. $this->request->data['search'] .'%']);
+        }else{
+            $friend_name = $this->account->find('all');
+        }
+        $this->set('data',$this->record->find('all'));
+        $this->set('firends',$friends);
+        $this->set('friend',$friend_name);
+        $this->set('recordId',$recordId);
+    }
+
     public function delRecord(){
         $session = $this->request->session();
         $entity_account = $this->record->get($this->request->data['data']);
