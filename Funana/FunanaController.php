@@ -117,6 +117,7 @@ class FunanaController extends AppController{
             $this->skin->save($entity);
             $this->set('entity',$entity);
         }
+        $this->set('id',$session->read('id'));
     }
     
     //皮編集画面
@@ -342,6 +343,36 @@ class FunanaController extends AppController{
             }
             $this->set('entity',$entity);
         }
+    }
+    
+    //画像のアップロード処理
+    if (isset($this->request->data['UploadData'])) {
+        //アップロードするファイルの場所
+        $uploaddir = "img/";
+        $uploadfile = $uploaddir.basename($this->request->data['UploadData']['img_name']['name']);
+        //echo $uploaddir."<br/>".$uploadfile."<br/>";
+
+        //画像をテンポラリーの場所から、上記で設定したアップロードファイルの置き場所へ移動
+        if (move_uploaded_file($this->request->data['UploadData']['img_name']['tmp_name'],$uploadfile)){
+            $deleteimg = $this->account->find('all')->where(['id' => $session->read('id')]);
+            foreach($deleteimg as $obj){
+                echo $obj->ICON_URL;
+                if(unlink("./img/$obj->ICON_URL")){ //削除成功
+                    //成功したら、Successを表示
+                    $this->set("message","読み込み成功です");
+                    //$deletefiles = $this->account->get($this->request->data['ICON_URL'])
+                    //unlink("/img/51UvGrv6pmL.jpg");
+                    $getName = basename($this->request->data['UploadData']['img_name']['name']);
+                    $entity = $this->account->newEntity(['ID' => $session->read('id'),'ICON_URL' => $getName]);
+                    $this->account->save($entity);
+                }else{
+                    //削除失敗
+                }
+            }
+        }else{
+            //失敗したら、errorを表示
+            $this->set("message","読み込み失敗です");
+        }            
     }
     
     public function qrReader(){
