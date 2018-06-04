@@ -200,19 +200,33 @@ class FunanaController extends AppController{
     
     //QR読み取り後画面
     public function anyoneReadqr(){
-        $account = $this->account->find('all',['conditions'=>['ID' => "1"]]);
+        $id = $this->request->query['id'];
+        $account = $this->account->find('all',['conditions'=>['ID' => $id]]);
         $this->set('account',$account);
+        $this->set('id',$id);
         foreach($account as $obj)
         if(isset($_POST['password'])){
             //パスワード認証
             if(strcmp($_POST['password'],$obj->QRPASS) == 0){
-                $this->redirect(['action' => 'afterSkin']);
+                $this->redirect(['action' => "afterSkin?id=$id"]);
             }
         }
     }
     
-    //QR読み取り後友達登録画面
+    //QR読み取り後画面
     public function afterReadqr(){
+        $session = $this->request->session();
+        $session -> write('id',2);
+        //送られてきた値をID、RECIRD_ID、ITEM_IDを用いて保存
+        if(isset($this->request->query['id'])){
+            for($i=0; $i < count($this->request->query)-1; $i++ ){
+                echo $session->read('id');
+                echo $this->request->query['id'];
+                echo $this->request->query[$i];
+                $entity = $this->record->newEntity(['ID'=>$session->read('id'),'RECORD_ID'=>$this->request->query['id'],'ITEM_ID'=>$this->request->query[$i]]);
+                $this->record->save($entity);
+            }
+        }
         $session = $this->request->session();
         //読み取られる
         $session->write('id',1);
@@ -221,8 +235,10 @@ class FunanaController extends AppController{
             'conditions'=>['ID' => $session->read('id')]
         ]);
         $this->set('skin',$skin);
-        $record = $this->fruit->find('all',[
-            'conditions'=>['ID'=>$session->read('id')]
+
+        //実情報表示
+        $fruit = $this->fruit->find('all',[
+            'conditions'=>['ID' => $session->read('id')]
         ]);
         $this->set('fruit',$fruit);
     }
@@ -231,7 +247,7 @@ class FunanaController extends AppController{
         //皮情報表示
         $session = $this->request->session();
         $this->set('entity',$this->skin->newEntity());
-        $id = '1';
+        $id = $this->request->query['id'];
         $data = $this->skin->find('all',['conditions'=>['ID' => $id]]);
         $this->set('data',$data);
     }
