@@ -251,17 +251,17 @@ class FunanaController extends AppController{
         $data = $this->skin->find('all',['conditions'=>['ID' => $id]]);
         $this->set('data',$data);
     }
+    
     public function afterFruit(){
         //相手の実情報表示
         $session = $this->request->session();
         $this->set('entity',$this->fruit->newEntity());
         $session->write('id',1);
         $data = $this->fruit->find('all',[
-            'conditions'=>['DISPLAY' => $session->read('id')]
+            'conditions'=>['DISPLAY' => 1]
         ]);
         $this->set('data',$data);
     }
-
     
     //交換相手に渡す情報を選ぶ画面
     public function exchangeInformation(){
