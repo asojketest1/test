@@ -82,11 +82,12 @@ class FunanaController extends AppController{
         $session = $this->request->session();
         $this->set('entity',$this->account->newEntity());
         if($this->request->is('post')){
-            if(isset($_POST['NAME'])){
-                $data = $this->account->find('all')->where(['NAME' => $_POST['NAME']]);
+            if(isset($_POST['MAIL'])){
+                $data = $this->account->find('all')->where(['MAIL' => $_POST['MAIL']]);
                 foreach($data as $obj){
                     if(strcmp($obj->PASS, $_POST['PASS']) == 0){
-                        return $this->redirect(['action'=>'friendList']);
+                        $session->write('id', $obj->ID);
+                        return $this->redirect(['action'=>'profileList']);
                     }
                 }
             }
