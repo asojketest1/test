@@ -32,33 +32,43 @@
     <hr>
         <div id="friendCnt">
             友達人数
-            <?=$firends ?>
+            <?=$firends?>
+            <span style="text-align:right;display:inline-block;">
+                <?=$this->Form->create(null,['url'=>['action'=>'profile_list'],'style'=>'display:inline-block']) ?>
+                    <?=$this->Form->hidden('shojun',['value'=>'1']) ?>
+                    <?=$this->Form->button("名前を昇順に並べ替え") ?>
+                <?=$this->Form->end() ?>
+                <?=$this->Form->create(null,['url'=>['action'=>'profile_list'],'style'=>'display:inline-block']) ?>
+                    <?=$this->Form->hidden('kojun',['value'=>'1']) ?>
+                    <?=$this->Form->button("名前を降順に並べ替え") ?>
+                <?=$this->Form->end() ?>
+            </span>
         </div> 
 <?php  endforeach;  ?>
 
 <hr>
 
 <?php 
+foreach($friend as $obj){
     foreach ($recordId as $record) {
-        foreach($friend as $obj){
-            if($record == $obj->ID){
-                if($obj->ICON_URL == null){
-                    $image = "noIcon.png";
-                }else{
-                    $image = $obj->ICON_URL;
-                }
-                echo "<a href='friendsprofile_after_peel?id=$obj->ID'>";
-                echo '<table id = "friendList">';
-                echo '<tr>';
-                echo '<td id="friendPhoto">' . $this->Html->image($image,['class'=>'friendIcon']) . '</td>';
-                echo '<td id="friendName">' . $obj->NAME . '</td>';
-                echo '</tr>';
-                echo '</table>';
-                echo '</a>';
-                echo '<hr>';
+        if($record == $obj->ID){
+            if($obj->ICON_URL == null){
+                $image = "noIcon.png";
+            }else{
+                $image = $obj->ICON_URL;
             }
+            echo "<a href='friendsprofile_after_peel?id=$obj->ID'>";
+            echo '<table id = "friendList">';
+            echo '<tr>';
+            echo '<td id="friendPhoto">' . $this->Html->image($image,['class'=>'friendIcon']) . '</td>';
+            echo '<td id="friendName">' . $obj->NAME . '</td>';
+            echo '</tr>';
+            echo '</table>';
+            echo '</a>';
+            echo '<hr>';
         }
     }
+}
 ?>
 
 

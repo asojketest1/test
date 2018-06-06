@@ -452,7 +452,13 @@ class FunanaController extends AppController{
             $friend_name = $this->account->find()->where([
                 'NAME like'=>'%'. $this->request->data['search'] .'%']);
         }else{
-            $friend_name = $this->account->find('all');
+            if($this->request->data('shojun') != null){
+                $friend_name = $this->account->find('all')->order(['NAME'=>'ASC']);
+            }else if($this->request->data('kojun') != null){
+                $friend_name = $this->account->find('all')->order(['NAME'=>'DESC']);
+            }else{
+                $friend_name = $this->account->find('all');
+            }
         }
         $this->set('data',$this->record->find('all'));
         $this->set('firends',$friends);
