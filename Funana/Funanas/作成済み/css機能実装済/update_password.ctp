@@ -5,7 +5,7 @@
     }
 </script>
 <div id="uppass">
-        <?=$this->Form->create(null, ['type'=>'post','url'=>['action'=>'confirm']]) ?>
+        <?=$this->Form->create($entity, ['type'=>'post','url'=>['action'=>'updatePassword']]) ?>
                 <div id="oldpass">古いパスワード</div>
                 <?=$this->Form->password('now_password',['style'=>"width:25em; padding:1em;", 'class'=>'txtbox',['size'=>100]]) ?>
                 <br/>

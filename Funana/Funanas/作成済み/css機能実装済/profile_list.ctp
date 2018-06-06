@@ -32,30 +32,30 @@
     <hr>
         <div id="friendCnt">
             友達人数
-            <?=$firends ?>
+            <?=$friends ?>
         </div> 
 <?php  endforeach;  ?>
 
 <hr>
 
 <?php 
-    foreach ($recordId as $record) {
-        foreach($friend as $obj){
-            if($record == $obj->ID){
-                if($obj->ICON_URL == null){
-                    $image = "noIcon.png";
-                }else{
-                    $image = $obj->ICON_URL;
+    if($friends != 0){
+        foreach ($recordId as $record) {
+            foreach($friend as $obj){
+                if($record == $obj->ID){
+                    if($obj->ICON_URL == null){
+                        $image = "noIcon.png";
+                    }else{
+                        $image = $obj->ICON_URL;
+                    }
+                    echo '<table id = "friendList">';
+                    echo '<tr>';
+                    echo '<td id="friendPhoto">' . $this->Html->image($image,['class'=>'friendIcon']) . '</td>';
+                    echo '<td id="friendName">' . $obj->NAME . '</td>';
+                    echo '</tr>';
+                    echo'</table>';
+                    echo '<hr>';
                 }
-                echo "<a href='friendsprofile_after_peel?id=$obj->ID'>";
-                echo '<table id = "friendList">';
-                echo '<tr>';
-                echo '<td id="friendPhoto">' . $this->Html->image($image,['class'=>'friendIcon']) . '</td>';
-                echo '<td id="friendName">' . $obj->NAME . '</td>';
-                echo '</tr>';
-                echo '</table>';
-                echo '</a>';
-                echo '<hr>';
             }
         }
     }
