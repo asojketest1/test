@@ -7,13 +7,12 @@
 <div id = "account_information">
     <?php foreach($data as $obj): ?>
         <div id="editMyIcon">
-            <?php
-                if($obj->ICON_URL == null){
-                    echo $this->Html->image('noIcon.png', ['class'=>'outsideIcon']);
-                }else{
-                    echo $this->Html->image($obj->ICON_URL, ['class'=>'outsideIcon']);
-                }
-            ?>
+            <?php $img = $obj->ICON_URL; ?>
+            <?=$this->Html->image($img, ['class'=>'myIcon']) ?>
+            <?= $this->Form->create('UploadData', ['enctype' => 'multipart/form-data','url' => ['action'=>'accountinformation'],'type' => 'post']); ?>
+            <?= $this->Form->file('UploadData.img_name'); ?>
+            <?=$this->Form->button("保存", ['id'=>'saveBtn', 'class'=>'saveBtn']) ?>
+            <?= $this->Form->end(); ?>
         </div>
         <img src="http://chart.apis.google.com/chart?chs=150x150&cht=qr&chl=http://localhost/cakephp/funana/anyone_readqr?id=<?= $obj->ID ?>" alt="QRコード">
         <table class="account_table">
