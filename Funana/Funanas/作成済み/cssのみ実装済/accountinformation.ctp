@@ -62,6 +62,6 @@
         </table>
     <?php endforeach; ?>
     <?=$this->Form->create($entity) ?>
-        <?= $this->Form->button('前の画面に戻る',['onclick' => 'history.back()', 'type' => 'button']) ?>
+        <?= $this->Form->button('前の画面に戻る',['onclick' => 'history.back()', 'type' => 'button', 'class' => 'backBtn']) ?>
     <?=$this->Form->end() ?>
 </div>
