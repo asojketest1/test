@@ -47,12 +47,14 @@
                 }else{
                     $image = $obj->ICON_URL;
                 }
+                echo "<a href='friendsprofile_after_peel?id=$obj->ID'>";
                 echo '<table id = "friendList">';
                 echo '<tr>';
                 echo '<td id="friendPhoto">' . $this->Html->image($image,['class'=>'friendIcon']) . '</td>';
                 echo '<td id="friendName">' . $obj->NAME . '</td>';
                 echo '</tr>';
-                echo'</table>';
+                echo '</table>';
+                echo '</a>';
                 echo '<hr>';
             }
         }
