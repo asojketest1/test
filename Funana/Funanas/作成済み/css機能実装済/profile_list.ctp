@@ -15,13 +15,7 @@
 <?php  foreach($account as $obj): ?>
     <table id = "myProfile">
         <td id = "myPhoto">
-            <?php
-                if($obj->ICON_URL == null){
-                    echo $this->Html->image('noIcon.png', ['class'=>'myIcon']);
-                }else{
-                    echo $this->Html->image($obj->ICON_URL, ['class'=>'myIcon']);
-                }
-            ?>
+            <?=$this->Html->image($obj->ICON_URL, ['class'=>'myIcon']) ?>
         </td>
         <td id = "myInformation">
             <div id = "myName"><?=$obj->NAME ?></div>
@@ -43,11 +37,7 @@
         foreach ($recordId as $record) {
             foreach($friend as $obj){
                 if($record == $obj->ID){
-                    if($obj->ICON_URL == null){
-                        $image = "noIcon.png";
-                    }else{
-                        $image = $obj->ICON_URL;
-                    }
+                    $image = $obj->ICON_URL;
                     echo '<table id = "friendList">';
                     echo '<tr>';
                     echo '<td id="friendPhoto">' . $this->Html->image($image,['class'=>'friendIcon']) . '</td>';
