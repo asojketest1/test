@@ -49,7 +49,7 @@ class FunanaController extends AppController{
             $this->set('phone',$phone);
         }
     }
-
+    
     //実際にユーザーを作成してる画面
     public function addRecord(){
         $session = $this->request->session();
@@ -59,6 +59,8 @@ class FunanaController extends AppController{
                 $account = $this->account->find('all')->where(['NAME'=>$_POST['NAME']]);
                 foreach($account as $obj){
                     $session->write('id',$obj->ID);
+                    $entity = $this->account->newEntity(['ID' => $session->read('id'),'ICON_URL' => 'noIcon.png']);
+                    $this->account->save($entity);
                 }
                 $new = $this->fruit->newEntity();
                 $new->ID = $session->read('id');
@@ -66,7 +68,7 @@ class FunanaController extends AppController{
                 $new->ITEM_NAME = "趣味";
                 $new->CONTENT = "音楽鑑賞";
                 $this->fruit->save($new);//実テーブルを仮作成
-                
+
                 $new_skin = $this->fruit->newEntity();
                 $new_skin->ID = $session->read('id');
                 if($this->skin->save($new_skin)){//皮テーブル作成
@@ -443,8 +445,13 @@ class FunanaController extends AppController{
         $this->set('account',$account);
         $record = $this->record->find('all',['conditions'=>['ID ='=>$session->read('id')]]);
         $friends = $record->count();
-        foreach($record as $obj){
-            $recordId[] = $obj->RECORD_ID;
+        if($friends != 0){
+            foreach($record as $obj){
+                $recordId[] = $obj->RECORD_ID;
+                $this->set('recordId',$recordId);
+            }
+        }else{
+            $this->set('recordId', '');
         }
         //検索したか？
         if(isset($this->request->data['serch'])){
