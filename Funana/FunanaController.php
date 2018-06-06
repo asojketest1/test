@@ -193,8 +193,12 @@ class FunanaController extends AppController{
         $this->set('entity',$this->skin->newEntity());
         $account = $this->skin->newEntity($this->request->data);
         $session->write('id',1);
-        unlink($session->read('viewid'));
-        $session->write('viewid',$this->request->query['id']);
+        if(isset($this->request->query['id'])){
+            if($_SESSION['viewid'] != null){
+                unset($_SESSION["viewid"]);
+            }
+            $session->write('viewid',$this->request->query['id']);
+        }
         $data = $this->skin->find('all',[
             'conditions'=>['ID' => $session->read('viewid')]
         ]);
@@ -431,6 +435,10 @@ class FunanaController extends AppController{
         //Record_Tableのentity_recordをセット
         $this->set('entity_record',$this->record->newEntity());
         $account = $this->account->find('all',['conditions'=>['ID ='=>$session->read('id')]]);
+        foreach($account as $obj){
+            $prime = $obj->PREMIER;
+        }
+        $this->set('prime',$prime);
         $this->set('id',$session->read('id'));
         $this->set('account',$account);
         $record = $this->record->find('all',['conditions'=>['ID ='=>$session->read('id')]]);
@@ -439,7 +447,7 @@ class FunanaController extends AppController{
             $recordId[] = $obj->RECORD_ID;
         }
         //検索したか？
-        if($this->request->is('post')){
+        if(isset($this->request->data['serch'])){
             //検索
             $friend_name = $this->account->find()->where([
                 'NAME like'=>'%'. $this->request->data['search'] .'%']);
