@@ -193,23 +193,38 @@ class FunanaController extends AppController{
         $this->set('entity',$this->skin->newEntity());
         $account = $this->skin->newEntity($this->request->data);
         $session->write('id',1);
+        unlink($session->read('viewid'));
+        $session->write('viewid',$this->request->query['id']);
         $data = $this->skin->find('all',[
-            'conditions'=>['ID' => $session->read('id')]
+            'conditions'=>['ID' => $session->read('viewid')]
+        ]);
+        $this->set('data',$data);
+    }
+    
+    public function friendsprofileAfterFruit(){
+        //実情報表示
+        $session = $this->request->session();
+        $this->set('entity',$this->fruit->newEntity());
+        $data = $this->fruit->find('all',[
+            'conditions'=>['ID' => $session->read('viewid')]
         ]);
         $this->set('data',$data);
     }
     
     //QR読み取り後画面
     public function anyoneReadqr(){
+        $session = $this->request->session();
         $id = $this->request->query['id'];
+        $session->write('publicid',$id);
         $account = $this->account->find('all',['conditions'=>['ID' => $id]]);
         $this->set('account',$account);
         $this->set('id',$id);
-        foreach($account as $obj)
-        if(isset($_POST['password'])){
-            //パスワード認証
-            if(strcmp($_POST['password'],$obj->QRPASS) == 0){
-                $this->redirect(['action' => "afterSkin?id=$id"]);
+        foreach($account as $obj){
+            if(isset($_POST['password'])){
+                //パスワード認証
+                if(strcmp($_POST['password'],$obj->QRPASS) == 0){
+                    $this->redirect(['action' => "afterSkin"]);
+                }
             }
         }
     }
@@ -248,7 +263,7 @@ class FunanaController extends AppController{
         //皮情報表示
         $session = $this->request->session();
         $this->set('entity',$this->skin->newEntity());
-        $id = $this->request->query['id'];
+        $id = $session->read('publicid');
         $data = $this->skin->find('all',['conditions'=>['ID' => $id]]);
         $this->set('data',$data);
     }
@@ -257,9 +272,9 @@ class FunanaController extends AppController{
         //相手の実情報表示
         $session = $this->request->session();
         $this->set('entity',$this->fruit->newEntity());
-        $session->write('id',1);
+        $id = $session->read('publicid');
         $data = $this->fruit->find('all',[
-            'conditions'=>['DISPLAY' => 1]
+            'conditions'=>['DISPLAY' => 1,'ID'=>$id]
         ]);
         $this->set('data',$data);
     }
