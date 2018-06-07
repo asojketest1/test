@@ -5,11 +5,14 @@
 <?=$this->Form->create($entity,['url'=>['action'=>'friendsprofileAfterPeel']]) ?>
 <?=$this->Form->button("皮情報に切り替える") ?><?=$this->Form->end() ?>
 <table>
-    <?php foreach($data as $obj): ?>
-    <tr>
-        <td><?=$obj->ITEM_NAME ?></td>
-        <td>：</td>
-        <td><?=$obj->CONTENT ?></td>
-    </tr>
+    <?php foreach($record as $obj2): ?>
+        <?php foreach($fruit as $obj1): ?>
+            <?php if($obj1->ITEM_ID == $obj2->ITEM_ID): ?>
+                <tr>
+                    <td><?=$obj1->ITEM_NAME ?></td>
+                    <td><?=$obj1->CONTENT ?></td>
+                </tr>
+            <?php endif; ?>
+        <?php endforeach; ?>
     <?php endforeach; ?>
 </table>
