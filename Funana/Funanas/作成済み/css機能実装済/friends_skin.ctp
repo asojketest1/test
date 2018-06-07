@@ -10,7 +10,9 @@
             <td id="outsideIcon" style="background-size: 300px; 
                                 background-image: url('../img/appleskin.png');"><?//controllerで画像切り替え
                                                                                 　//orangeはsize:350px, bananaはsize:450px ?>
-                <?=$this->Html->image('naru.jpg', ['class'=>'outsideIcon']) ?>
+                <?php foreach($acc as $img): ?>
+                    <?=$this->Html->image($img->ICON_URL, ['class'=>'outsideIcon']) ?>
+                <?php endforeach; ?>
             </td>
             <td id="outsideInfo" style="background-size: 300px; 
                                 background-image: url('../img/appleframe.png');"><?//controllerで画像切り替え
@@ -123,8 +125,19 @@
         <span><?=$this->Html->image('make.png', ['class'=>'outMark']) ?></span>
     </div>
 <?php endforeach; ?>
-<div id="changeBtn">
-    <?=$this->Form->create($entity,['url'=>['action'=>'friends_fruit']]) ?>
-        <?=$this->Form->button("皮を剥く", ['type'=>'submit', 'div'=>'false', 'class'=>'changeBtn']) ?>
-    <?=$this->Form->end() ?>
-</div>
+<?php foreach($acc as $skin): ?>
+    <table style="text-align:center; width:100%; margin-bottom: 3%;">
+        <tr>
+            <td id="changeBtn">
+                <?=$this->Form->create($entity,['url'=>['action'=>'profileList']]) ?>
+                    <?=$this->Form->button("一覧に戻る", ['type'=>'submit', 'div'=>'false', 'class'=>'changeBtn']) ?>
+                <?=$this->Form->end() ?>
+            </td>
+            <td id="changeBtn">
+                <?=$this->Form->create($entity,['url'=>['action'=>'friendsFruit?id='.$skin->ID]]) ?>
+                    <?=$this->Form->button("皮を剥く", ['type'=>'submit', 'div'=>'false', 'class'=>'changeBtn']) ?>
+                <?=$this->Form->end() ?>
+            </td>
+        </tr>
+    </table>
+<?php endforeach; ?>
