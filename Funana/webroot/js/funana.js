@@ -35,16 +35,11 @@
 	});
 	$("#logout").click(function() {
   		if (confirm('本当にログアウトしますか？')) {
-    		window.location.href = 'http://localhost/group/funana';
+    		window.location.href = 'http://localhost/group/funana/logout';
   		}
 	});
 	
 	$("#trEditPass").click(function() {
   	    window.location.href = 'http://localhost/group/funana/update-password';
 	});
-	$("#trEditPhone").click(function() {
-  	    window.location.href = 'http://localhost/group/funana/update-phone';
-	});
-
-
 });

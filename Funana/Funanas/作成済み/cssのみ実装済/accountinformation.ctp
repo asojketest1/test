@@ -16,14 +16,14 @@
         </div>
         <img src="http://chart.apis.google.com/chart?chs=150x150&cht=qr&chl=http://localhost/cakephp/funana/anyone_readqr?id=<?= $obj->ID ?>" alt="QRコード">
         <table class="account_table">
+            <tr id="trEditQr" class="editAcc">
+                <td id="editQrTxt">QR閲覧用パスワード：</td>
+                <td id="editQr"><?= $obj->QRPASS ?></td>
+            </tr>
             <tr id="trEditId" class="editAcc" style="width:7em;">
                 <td id="editIdTxt">ユーザーID：</td>
                 <td id="editId"><?=$obj->ID ?></td>
             </tr>
-            <tr id="trEditQr" class="editAcc">
-                <td id="editQrTxt">QR閲覧用パスワード：</td>
-                <td id="editQrTxt"><?= $obj->QRPASS ?></td>
-            </tr>   
             <tr id="trEditName" class="editAcc">
                 <td id="editNameTxt">ユーザー名：</td>
                 <td id="editName"><?=$obj->NAME ?></td>
@@ -50,13 +50,13 @@
                     <?=$this->Form->end() ?>
                 </td>
             </tr>
+            <tr id="trEditPhone" class="editAcc">
+                <td id="editPhoneTxt">電話番号</td>
+                <td id="editPhone"><?=$obj->PHONE ?></td>
+            </tr>
             <tr id="trEditPass" class="editAcc">
                 <td id="editPassTxt">パスワード</td>
                 <td id="editPass"><?=$obj->PASS ?><span class="toEdit">></span></td>
-            </tr>
-            <tr id="trEditPhone" class="editAcc">
-                <td id="editPhoneTxt">電話番号</td>
-                <td id="editPhone"><?=$obj->PHONE ?><span class="toEdit">></span></td>
             </tr>
         </table>
     <?php endforeach; ?>
