@@ -10,7 +10,9 @@
             <td id="outsideIcon" style="background-size: 300px; 
                                 background-image: url('../img/appleskin.png');"><?//controllerで画像切り替え
                                                                                 　//orangeはsize:350px, bananaはsize:450px ?>
-                <?=$this->Html->image('naru.jpg', ['class'=>'outsideIcon']) ?>
+                <?php foreach($acc as $img): ?>
+                    <?=$this->Html->image($img->ICON_URL, ['class'=>'outsideIcon']) ?>
+                <?php endforeach; ?>
             </td>
             <td id="outsideInfo" style="background-size: 300px; 
                                 background-image: url('../img/appleframe.png');"><?//controllerで画像切り替え
