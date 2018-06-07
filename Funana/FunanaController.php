@@ -190,12 +190,13 @@ class FunanaController extends AppController{
     }
     
     //友達一覧タップ後の皮情報表示
-    public function friendsprofileAfterPeel(){
+    public function friendsSkin(){
         $session = $this->request->session();
         $this->set('entity',$this->skin->newEntity());
         $account = $this->skin->newEntity($this->request->data);
         $session->write('id',1);
         if(isset($this->request->query['id'])){
+            $session->write('viewid','');
             if($_SESSION['viewid'] != null){
                 unset($_SESSION["viewid"]);
             }
@@ -207,14 +208,18 @@ class FunanaController extends AppController{
         $this->set('data',$data);
     }
     
-    public function friendsprofileAfterFruit(){
-        //実情報表示
+    public function friendsFruit(){
         $session = $this->request->session();
         $this->set('entity',$this->fruit->newEntity());
-        $data = $this->fruit->find('all',[
+        // Fruit Table の“１“を
+        $fruit = $this->fruit->find('all',[
             'conditions'=>['ID' => $session->read('viewid')]
         ]);
-        $this->set('data',$data);
+        $this->set('fruit',$fruit);
+        $record = $this->record->find('all',[
+            'conditions' =>['ID' => $session->read('id'),'RECORD_ID'=> $session->read('viewid')]
+        ]);
+        $this->set('record',$record);
     }
     
     //QR読み取り後画面
@@ -241,28 +246,13 @@ class FunanaController extends AppController{
         $session -> write('id',2);
         //送られてきた値をID、RECIRD_ID、ITEM_IDを用いて保存
         if(isset($this->request->query['id'])){
+            $id = $this->request->query['id'];
             for($i=0; $i < count($this->request->query)-1; $i++ ){
-                echo $session->read('id');
-                echo $this->request->query['id'];
-                echo $this->request->query[$i];
                 $entity = $this->record->newEntity(['ID'=>$session->read('id'),'RECORD_ID'=>$this->request->query['id'],'ITEM_ID'=>$this->request->query[$i]]);
                 $this->record->save($entity);
             }
+            $this->redirect(['action'=>"friendsprofileAfterPeel?id=$id"]);
         }
-        $session = $this->request->session();
-        //読み取られる
-        $session->write('id',1);
-        //皮情報表示
-        $skin = $this->skin->find('all',[
-            'conditions'=>['ID' => $session->read('id')]
-        ]);
-        $this->set('skin',$skin);
-
-        //実情報表示
-        $fruit = $this->fruit->find('all',[
-            'conditions'=>['ID' => $session->read('id')]
-        ]);
-        $this->set('fruit',$fruit);
     }
     
     public function afterSkin(){
@@ -468,9 +458,8 @@ class FunanaController extends AppController{
             }
         }
         $this->set('data',$this->record->find('all'));
-        $this->set('firends',$friends);
+        $this->set('friends',$friends);
         $this->set('friend',$friend_name);
-        $this->set('recordId',$recordId);
     }
 
     public function delRecord(){
