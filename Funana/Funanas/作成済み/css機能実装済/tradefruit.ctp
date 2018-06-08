@@ -23,9 +23,14 @@
         $("#animeField").children("img").attr("src","/group/img/appleskin.png");
         $("#animeField").children("img").attr("class","fruitQR");
         document.getElementById('homeBtn').style.display='block';
+        document.getElementById('myqr').style.display='block';
     }
 </script>
-<div id="animeField"><?=$this->Html->image('trade1.jpg', ['class'=>'anime']) ?></div>
+<div id="animeField" style="position:relative;"><?=$this->Html->image('trade1.jpg', ['class'=>'anime']) ?></div>
+<div id="myqr" style="display:none; position:absolute; top:38%; left:29%;">
+    <img src="http://chart.apis.google.com/chart?chs=400x400&cht=qr&chl=http://localhost/test/funanas/after-readqr?<?=$paramater?>" alt="QRコード">
+    <a href='after-readqr?<?= $paramater ?>'>移動</a>
+</div>
 <?=$this->Form->create(null, ['type'=>'post','url'=>['action'=>'profileList']]) ?>
         <div id="homeBtn" style="display:none;">
             <?=$this->Form->button('ホームへ戻る', ['type'=>'submit', 'div'=>'false',
