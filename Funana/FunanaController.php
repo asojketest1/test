@@ -144,9 +144,16 @@ class FunanaController extends AppController{
         ]);
         $this->set('data',$data);
         //実情報編集
-        if($this->request->is('post')){
-           $fruit = $this->fruit->newEntity($this->request->data);
-           $this->fruit->save($fruit);
+        if($this->request->data('button') == 'add'){
+            var_dump($this->request->data);
+            $fruit = $this->fruit->newEntity($this->request->data);
+            $this->fruit->save($fruit);
+        }else if($this->request->data('button') == 'del'){
+            $session = $this->request->session();
+            if($this->request->is('post')){
+                $this->fruit->deleteAll(['ID'=>$session->read('id'),'ITEM_ID'=>$this->request->data['ITEM_ID']]);
+            }
+            return $this->redirect(['action' => 'fruitEdit']);
         }
     }
     
@@ -159,6 +166,12 @@ class FunanaController extends AppController{
         $data = $this->fruit->find('all',[
             'conditions'=>['ID' => $id]
         ]);
+        $record = $this->record->find('all',[
+            'conditions'=>['RECORD_ID' => $id]
+        ]);
+        foreach($record as $obj){
+            $record = $obj->RECORD_ID;
+        }
         $iddata = $this->fruit->find('all')->where(['id'=>$id]);
         //一番数字の大きいidを取得して、プラス１してる
         foreach($iddata as $obj){
@@ -168,6 +181,7 @@ class FunanaController extends AppController{
         $this->set('data',$data);
         $this->set('maxid',$maxid);
         $this->set('id',$id);
+        $this->set('record',$record);
     }
     
     //実情報追加機能
@@ -178,15 +192,6 @@ class FunanaController extends AppController{
             $this->fruit->save($fruit);
             $this->redirect(['action' => 'fruit']);
         }
-    }
-    
-    //実情報の削除機能
-    public function deleteFruit(){
-        if($this->request->is('post')){
-            $entity = $this->fruit->get($session->read('id'));
-            $this->Takebookarticles->delete($entity);
-        }
-        return $this->redirect(['action' => 'fruitEdit']);
     }
     
     //友達一覧タップ後の皮情報表示
@@ -276,7 +281,7 @@ class FunanaController extends AppController{
     }
     
     //交換相手に渡す情報を選ぶ画面
-    public function exchangeInformation(){
+    public function tradefruit_select(){
         $session = $this->request->session();
         $session->write('id',1);
         //送信が確定されている皮情報表示
@@ -293,7 +298,7 @@ class FunanaController extends AppController{
     }
 
     //交換相手に渡した情報からQRを作成する機能
-    public function afterExchangeInformation(){
+    public function tradefruit(){
         $session = $this->request->session();
         $session->write('id',1);
         $myid = $session->read('id');
