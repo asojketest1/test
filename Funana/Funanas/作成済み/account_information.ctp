@@ -51,10 +51,6 @@
                     <?=$this->Form->end() ?>
                 </td>
             </tr>
-            <tr id="trEditPass" class="editAcc">
-                <td id="editPassTxt">パスワード</td>
-                <td id="editPass">・・・・・・<span class="toEdit">></span></td>
-            </tr>
             <tr id="trEditPhone" class="editAcc">
                 <td id="editPhoneTxt">電話番号</td>
                 <td id="editPhone">+81 9999-9999<span class="toEdit">></span></td>
