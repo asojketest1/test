@@ -1,9 +1,0 @@
-<h1>ユーザ登録</h1>
-<?=$this->Form->create($entity,['url'=>['action'=>'addRecord']])?>
-<fieldset>
-    <?=$this->Form->input('name',['type'=>'text'])?>
-    <?=$this->Form->input('display_name',['type'=>'text'])?>
-    <?=$this->Form->input('pass',['type'=>'text'])?>
-</fieldset>
-<?=$this->Form->button("送信")?>
-<?=$this->Form->end()?>
