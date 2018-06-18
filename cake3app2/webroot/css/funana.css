@@ -9,7 +9,7 @@ padding: 0px;
 
 /*共通部分*/
 #acMenu {
-	text-align: right;
+	text-align: center;
 }
 ul li {
   	list-style: none;
@@ -17,7 +17,6 @@ ul li {
 }
 .close {
 	display: none;
-	text-align: left;
 }
 .close li {
 	background-color: #FF839F;
@@ -32,21 +31,11 @@ ul li {
 	vertical-align: middle;
 }
 .menuBtn {
-	margin: 3%;
 	color: #fff;
 	font-size: 2em;
 	font-weight: bold;
 	vertical-align: middle;
-	padding-top: 1em;
-	padding-bottom: 1em;
-}
-#skin {
-	text-align: right;
-	padding-right: 1em;
-}
-#fruit {
-	text-align: right;
-	padding-right: 1em;
+	padding: 1em;
 }
 /*ログイン前画面*/
 #divLoginBtn {
@@ -128,33 +117,26 @@ button.registerBtn {
 	margin-bottom: 20%;
     display: block;
 }
-#necTxt {
+.necTxt {
 	text-align: center;
 	font-size: 300%;
+	font-weight: bold;
 }
 #registTxt{
 	text-align: center;
 }
-#nameTxt {
-	font-size: 300%;
+.registTxt {
+	font-size: 280%;
 	text-align: left;
 	margin-bottom: 0px;
 }
-#mailTxt {
-	font-size: 300%;
-	text-align: left;
-	margin-bottom: 0px;
-}
-input.nameTxtbox{
-	font-size: 25px;
-	margin-top: 0px;
-}
-input.mailTxtbox{
-	font-size: 25px;
+input.registTb{
+	font-size: 36px;
 	margin-top: 0px;
 }
 #divSignUpBtn {
 	text-align: center;
+	margin-top: 5%;
 }
 button.signUpBtn {
 	border-radius: 50px;
@@ -168,7 +150,6 @@ button.signUpBtn {
 	vertical-align: middle;
 	width: 540px;
 	height: 100px;
-	margin-top: 5%;
 }
 /*ログイン画面*/
 .ardFruitImg {
@@ -183,26 +164,9 @@ button.signUpBtn {
 	text-align: center;
  	float: left;
 }
-#loginIdTxt {
-	font-size: 300%;
-	text-align: left;
-	margin-bottom: 0px;
-}
-#passTxt {
-	font-size: 300%;
-	text-align: left;
-	margin-bottom: 0px;
-}
-input.loginIdTxtbox{
-	font-size: 25px;
-	margin-top: 0px;
-}
-input.passwordTxtbox{
-	font-size: 25px;
-	margin-top: 0px;
-}
 #divSignInBtn {
 	text-align: center;
+	margin-top: 5%;
 }
 button.signInBtn {
 	border-radius: 50px;
@@ -216,7 +180,6 @@ button.signInBtn {
 	vertical-align: middle;
 	width: 360px;
 	height: 100px;
-	margin-top: 5%;
 }
 /*友達一覧画面*/
 .search{
@@ -249,6 +212,7 @@ input.searchTxtbox{
 .myIcon {
 	border-radius: 50%;
 	margin-left: 1em;
+    image-orientation: 0deg;
 }
 .mailIcon {
 	position: relative;
@@ -322,20 +286,10 @@ button.editBtn {
 	float: left;
 	margin-left: 7%;
 }
-#editNameTxt {
+.editTxt {
 	text-align: left;
 	margin-bottom: 0px;
 	float: none;
-	font-size: 300%;
-}
-#editBelTxt {
-	text-align: left;
-	margin-bottom: 0px;
-	font-size: 300%;
-}
-#editSubTxt {
-	text-align: left;
-	margin-bottom: 0px;
 	font-size: 300%;
 }
 input.editTxtbox {
@@ -1115,56 +1069,29 @@ button.changeBtn {
 }
 table.account_table {
 	border-width: 0;
+    margin: 0 5vw;
 	text-align: center;
-	width: 100%;
+	width: 90vw;
 }
 .editAcc {
 	font-size: 250%;
 	text-align: left;
+    margin-top: 10vh !important;
 }
-#editQrTxt {
-	padding-left: 3%;
+.editaccount {
+	padding: 0px;
 }
-#editQr {
-	text-align: right;
-	padding: 1.5% 3% 1.5% 0%;
-}
-#editIdTxt {
-	padding-left: 3%;
-}
-#editId {
-	text-align: right;
-	padding: 1.5% 3% 1.5% 0%;
-}
-#tdEditNameTxt {
-	padding-left: 3%;
-}
-#editName {
-	text-align: right;
+.editView {
+	text-align: left;
 	padding: 1.5% 3% 0% 0%;
 }
-#editMailTxt {
-	padding-left: 3%;
-}
-#editMail {
-	text-align: right;
-	padding: 1.5% 3% 0% 0%;
-}
-#text_Form {
-	text-align: right;
-	padding: 0% 3% 1.5% 0%;
+.text_Form {
+	text-align: left;
+    margin: 0;
 }
 input.editTxtbox{
 	font-size: 25px;
 	text-align: left;
-}
-#editPassTxt {
-	padding-left: 3%;
-}
-#editPass {
-	text-align: right;
-	padding: 1.5% 3% 1.5% 0%;
-	animation: ripple .6s;
 }
 #saveBtn{
 	vertical-align: middle;
@@ -1181,10 +1108,6 @@ button.saveBtn {
 	vertical-align: middle;
 	width: 120px;
 	height: 80px;
-}
-#trEditPass {
-	cursor: pointer;
-	animation: ripple .6s;
 }
 #trEditPhone {
 	cursor: pointer;
